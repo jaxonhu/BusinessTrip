@@ -1,0 +1,83 @@
+
+@mixin centerblock{
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+@mixin block{
+    width: 384px;
+}
+@mixin p_instrucment{
+    color: #747474;
+    font-size:10px;
+    font-weight:400;
+}
+
+///////////////////////////////////////////////////////////
+.text_input{
+    border: 1px solid #cacaca;
+    -webkit-font-smoothing: antialiased;
+    margin:0px;
+    display: -webkit-inline-box;
+    background-color: rgb(250, 255, 189);
+    background-image: none;
+    color: rgb(0, 0, 0);
+    line-height: 19px;
+    padding: 9.5px 12px 9.5px 12px;
+    width: 320px;
+}
+///////////////////////////////////////////////////////////
+body{
+    background: #f3f3f3; 
+}
+$block_width: 384px;
+
+.login_tittle{
+    @include centerblock;
+    @include block;
+    text-align: center;
+    position: relative;
+    top: 50px;
+    p{
+        font-size: 30px;
+        color: #4f8cf2;
+    }
+}
+#login_box{
+    @include centerblock;
+    @include block;
+    text-align: left;
+    position: relative;
+    top: 100px;
+    background: #fff;
+    border: 1px solid #dedede;
+    border-radius: 2px;
+    padding: 20px 20px 20px 30px;
+    p{
+        @include p_instrucment;
+    }
+    input{
+        @extend .text_input;
+    }
+    .login_btn{
+        color: #fff;
+        background-color: #4f8cf2;
+        border-color: #4f8cf2;
+        font-family: gotham,Hiragino Sans GB,STHeiti,Microsoft Yahei,helvetica,arial,sans-serif;
+        line-height: 1.5;
+        -webkit-appearance: button;
+        cursor: pointer;    
+        text-align: center;
+        display: inline-block;
+        border-width: 1px;
+        border-style: solid;
+        transition: all .2s ease;
+        position: relative;
+        border-radius: 5px;
+        font-size: 20px;
+        margin: 20px 10px 20px 10px;
+    }
+    .login_btn:hover{
+        background-color: #78a7f5;
+    }
+}

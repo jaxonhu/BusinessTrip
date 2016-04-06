@@ -1,0 +1,14 @@
+.clearFix:after{
+ clear:both;
+ display:block;
+ visibility:hidden;
+ height:0;
+ line-height:0;
+ content:'';
+
+}
+ul{
+    padding: 0px;
+    margin: 0px;
+    display: none;
+}

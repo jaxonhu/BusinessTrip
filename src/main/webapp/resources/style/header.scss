@@ -1,0 +1,161 @@
+
+@mixin li_menu_horizon{
+    display: inline-block;
+    text-align: center;  
+    position: relative; 
+};
+@mixin ul_menu{
+    padding: 0;
+    margin: 0;
+    
+}
+@mixin myfont{
+    font-family: 'Microsoft Yahei', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+@mixin cancel_a_style{
+    a{
+         text-decoration: none;
+         color: #fff;
+         -webkit-transition: all 0.2s ease;
+    }
+   
+    
+}
+.header{
+    height: 42px;
+    font-size: 14px;
+    color: white;
+    position: fixed;
+    z-index: 2;
+    top: 0px;
+    background: #292929;
+    display: block;
+    width: 100%;
+    left: 0px;
+}
+.header_left{
+    @include ul_menu;
+    position: relative;
+    left: 40px;
+  
+    @include cancel_a_style;
+    display: inline-block;
+    li{
+        @include li_menu_horizon;
+        @include myfont;
+        height: 32px;
+        font-size: 13px;
+        padding:10px 10px 0px 10px;
+        text-align: center;
+        margin: 0px;
+        -webkit-transition: all 0.2s ease;
+        float: left;
+      }
+      li:hover{
+          background-color: #000;
+     
+      }
+        #mytrip_search{
+            height: 20px;
+            border-radius: 3px;
+            width: 130px;
+            padding: 3px 6px 3px 26px;
+            position: relative;
+            margin: 5px 10px 0px 5px;
+            left: 20px;
+            display: inline-block;
+            border-radius: 3px;
+            -webkit-transition:all 0.2s ease;
+            background: #fff url(../image/icons_search.png) 0px -2px no-repeat;
+        }
+  #mytrip_search:focus{
+        width: 200px;
+  }      
+}
+.header_right{
+    float: right;
+    right: 0;
+    width: 230px;
+    display: block;
+    @include myfont;
+    
+    .add_mytrip{
+        display: block;
+         background: #292929 url(../image/icons_search.png) -3px -33px no-repeat;
+         height: 24px;
+         width: 24px;
+         float: left;
+         margin-top: 8px;
+         margin-right: 10px;
+         
+    }
+    .myprofile{
+        display: inline-block;
+        right: 0px;
+        width: 150px;
+        a{
+            text-decoration: none;
+            color:#fff;
+            padding: 0px;
+            display: inline-block;
+            -webkit-transition: all 0.2s ease;
+            text-align: center;
+            padding: 0px 10px 0px 10px;
+            
+        }
+        a:hover{
+            background-color: #000;
+        }
+        img{
+            display: block;
+            float: left;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin: 5px 5px 5px 5px;
+        }
+        p{
+            display: block;
+            float: left;
+            position: relative;
+           
+            margin-bottom: 0px;
+        }
+       
+    }
+}
+.header_drop{
+    position: relative;
+    top:15px;
+    margin-left: 5px;
+    float: right;
+    width: 12px;
+    height: 12px;
+    display: block;
+    background: url(../image/icons_search.png) -9px -97px no-repeat;
+}
+#header_user_menu{
+    top: 42px;
+    position: absolute;
+    display: block;
+    right: 0px;
+    min-width: 140px;
+    background: rgba(0,0,0,0.63);    
+    li{
+        display: block;
+        text-align: -webkit-match-parent;
+        a{
+            display: block;
+            font-size: 13px;
+            padding: 10px 20px 0px 20px;
+            height: 36px;
+            position: relative;
+            text-decoration: none;
+            color: #fff;    
+            -webkit-transition: all 0.2s ease;   
+        }
+        a:hover{
+            background-color: #4f8cf2;
+        }
+    }
+}
