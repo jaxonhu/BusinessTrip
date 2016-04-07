@@ -1,0 +1,87 @@
+.trip_info_left{
+    display: block;
+    float: left;
+    position: relative;
+    width: 560px;
+    height: 670px;
+
+}
+.ul_tripinfo1{
+    display: inline-block;
+    position: relative;
+    width: 500px;
+    height: 500px;
+    padding: 60px 20px 30px 30px;
+    list-style: none;
+    
+}
+.ul_tripinfo1 li{
+    width: 450px;
+    margin-bottom: 35px;
+}
+.info_input{
+    position: absolute;
+    right: 50px;
+    width: 300px;
+    border-radius: 5px;
+    padding: 6px 12px;
+    color: #555;
+    background-color: #fff;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.trip_info_right{
+    display: block;
+    float: right;
+    width: 560px;
+    height: 670px;
+    background: #fff;
+}
+.trip_info_table{
+    position: absolute;
+    right: 30px;
+}
+.budget{
+    display: inline-block;  
+    color: #fff;
+    text-decoration: none;
+    text-align: center;
+    width: 100px;
+    border-radius: 5px;
+    background-color: #3498db;
+    padding-bottom: 12px;
+    padding-top: 10px;
+    transition:all  0.2s ease;
+    line-height: 15px;
+    margin-right: 20px;
+    border-color: rgba(0,0,0,0.15) rgba(0,0,0,0.15) rgba(0,0,0,0.25);
+}
+.budget:visited{
+   background-color: #5dade2;
+   text-decoration: none;
+   color:  #fff;
+}
+.budget:hover{
+    background-color: #5dade2;
+   text-decoration: none;
+   color:  #fff;
+}
+.budget_btn{
+    position: relative;
+    display: block;
+    left: 25%;
+    
+}
+.input_short{
+    width: 50px !important;
+}
+.input_long{
+    width: 260px !important;
+}
+.trip_apply{
+    display: block;
+    position: relative;
+    top: 0px;
+    margin-left:40%;
+}
