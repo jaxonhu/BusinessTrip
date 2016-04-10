@@ -5,10 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
-    <link rel="stylesheet" href="<c:url value="/resources/style/home.css"/>" type="text/css"/>
-    <link rel="stylesheet" href="<c:url value="/resources/style/header.css"/>" type="text/css"/>
-    <link rel="stylesheet" href="<c:url value="/resources/style/common.css"/>" type="text/css"/>
-    <link rel="stylesheet" href="<c:url value="/resources/style/left_sidebar.css"/>" type="text/css"/>
+    <link rel="stylesheet" href="<c:url value="/resources/style/home.css"/>" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/style/header.css"/>" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/style/common.css"/>" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/style/left_sidebar.css"/>" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/style/jquery-ui.min.css"/>" type = "text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/style/bootstrap.min.css"/>" type="text/css">
+    <link rel="stylesheet" href="<c:url value="/resources/style/common.css"/>" type="text/css">
 </head>
 <body>
     <div class="header ">
@@ -53,7 +56,7 @@
                     <span class="left_sidebar_title">我的差旅</span>
                 </span>
             </a>
-            <a href="">
+            <a href="<%=request.getContextPath()%>/apply">
                   <span class="span_item">
                     <span class="nav_icons home"></span>
                     <span class="left_sidebar_title">差旅申请</span>

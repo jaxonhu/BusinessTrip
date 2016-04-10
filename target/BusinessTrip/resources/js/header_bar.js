@@ -1,3 +1,8 @@
+$(function(){
+    $("#header_user_menu").css("display","none");
+});
+
+
 $(".myprofile>a").hover(
     function(){
         $("#header_user_menu").css("display","block");

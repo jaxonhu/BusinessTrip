@@ -28,7 +28,7 @@
             <a href="" class="add_mytrip"></a>
             <div class="myprofile">
                 <a href="">
-                <img src="../image/profile-full-male.png" class="radius3 clearFix" alt="新建差旅">
+                <img src="<c:url value="/resources/image/profile-full-male.png"/>" class="radius3 clearFix" alt="新建差旅">
             
                <p class="clearFix">胡家煊</p>
                <span class="header_drop"></span>
@@ -176,20 +176,36 @@
              var budget_class = $(".budget_class:eq('"+i+"')>select").val();
              var budget_price = $(".budget_price:eq('"+i+"')>input").val();
              var budget_num = $(".budget_num:eq('"+i+"')>input").val();
+//             if(i!=(n-1)){
+//                 budget_data  =budget_data+ "{\"budget_info\":\""+budget_info+"\",\"budget_class\":\""+budget_class+"\",\"budget_price\":\""+budget_price+"\",\"budget_num\":\""+budget_num+"\"}" +",";
+//             }else{
+//                 budget_data  =budget_data+ "{\"budget_info\":\""+budget_info+"\",\"budget_class\":\""+budget_class+"\",\"budget_price\":\""+budget_price+"\",\"budget_num\":\""+budget_num+"\"}";
+//             }
              if(i!=(n-1)){
-                 budget_data  =budget_data+ "{\"budget_info\":\""+budget_info+"\",\"budget_class\":\""+budget_class+"\",\"budget_price\":\""+budget_price+"\",\"budget_num\":\""+budget_num+"\"}" +",";
+                 budget_data  =budget_data+ "{budget_info:"+budget_info+",budget_class:"+budget_class+",budget_price:"+budget_price+",budget_num:"+budget_num+"}" +",";
              }else{
-                 budget_data  =budget_data+ "{\"budget_info\":\""+budget_info+"\",\"budget_class\":\""+budget_class+"\",\"budget_price\":\""+budget_price+"\",\"budget_num\":\""+budget_num+"\"}";
+                 budget_data  =budget_data+ "{budget_info:"+budget_info+",budget_class:"+budget_class+",budget_price:"+budget_price+",budget_num:"+budget_num+"}";
              }
+
 
          }
          budget_data +="]";
-
-         var final_json = "{\"user_name\":\""+user_name+"\",\"user_department\":\""+user_department+"\",\"user_applyTime\":\""+user_applyTime+"\",\"trip_destination\":\""+trip_destination+"\",\"trip_time_begin\":\""+trip_time_begin+"\",\"trip_time_end\":\""+trip_time_begin+"\",\"user_phonecall\":\""+user_phonecall+"\",\"trip_reason\":\""+trip_reason+"\",\"budget_data\":"+budget_data+"}";
+         var final_json = "{user_name:"+user_name+",user_department:"+user_department+",user_applyTime:"+user_applyTime+",trip_destination:"+trip_destination+",trip_time_begin:"+trip_time_begin+",trip_time_end:"+trip_time_begin+",user_phonecall:"+user_phonecall+",trip_reason:"+trip_reason+",budget_data:"+budget_data+"}";
+//         var final_json = "{\"user_name\":\""+user_name+"\",\"user_department\":\""+user_department+"\",\"user_applyTime\":\""+user_applyTime+"\",\"trip_destination\":\""+trip_destination+"\",\"trip_time_begin\":\""+trip_time_begin+"\",\"trip_time_end\":\""+trip_time_begin+"\",\"user_phonecall\":\""+user_phonecall+"\",\"trip_reason\":\""+trip_reason+"\",\"budget_data\":"+budget_data+"}";
+         var testdata = {
+             user_name: user_name,
+             user_department: user_department,
+             user_apply_time:user_applyTime,
+             trip_destination: trip_destination,
+             trip_time_begin: trip_time_begin,
+             trip_time_end: trip_time_end,
+             trip_reason: trip_reason,
+             user_phonecall: user_phonecall
+         };
          $.ajax({
              type:"POST",
              url: "/BusinessTrip/mytrip/new",
-             data:final_json,
+             data: testdata,
              success:function(data){
 
              },
