@@ -11,4 +11,5 @@ public interface UserDao{
     public UserClient login(UserClient userClient);
     public UserClient selectUserClientById(String user_id);
     public UserClient selectUserClientByAccount(String user_account);
+    public String selectUserClientIdByAccount(String user_account);
 }

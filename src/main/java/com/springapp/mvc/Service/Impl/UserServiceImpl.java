@@ -30,4 +30,10 @@ public class UserServiceImpl implements UserClientService {
 
         return false;
     }
+
+    @Override
+    public String selectUserIdByAccount(String user_account) {
+
+        return null;
+    }
 }

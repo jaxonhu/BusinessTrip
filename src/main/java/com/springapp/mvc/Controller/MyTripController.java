@@ -4,6 +4,7 @@ import com.springapp.mvc.Model.Apply;
 import com.springapp.mvc.Model.UserClient;
 import com.springapp.mvc.Service.ApplyService;
 import com.springapp.mvc.Service.UserClientService;
+import com.springapp.mvc.Utils.DateTransform;
 import com.springapp.mvc.Utils.IDworker;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,20 +39,26 @@ public class MyTripController {
         String user_department = request.getParameter("user_department");
         String user_apply_time = request.getParameter("user_apply_time");
         String trip_destination = request.getParameter("trip_destination");
-        String trip_time_begin = request.getParameter("trip_time_begin");
-        String trip_time_end = request.getParameter("trip_time_end");
+        String trip_time_begin = new DateTransform().date_transform(request.getParameter("trip_time_begin"));
+        String trip_time_end = new DateTransform().date_transform( request.getParameter("trip_time_end"));
         String trip_reason = request.getParameter("trip_reason");
         String trip_phonecall = request.getParameter("trip_phonecall");
 
         IDworker iDworker = new IDworker(1);
         String  apply_id = Long.toString(iDworker.nextId());
         UserClient user = userService.selectUserByAccount(user_name);
-        Apply apply = new Apply(user.getUser_id(),user_apply_time,user_name,user_department,trip_destination,
+        Apply apply = new Apply(apply_id,user.getUser_id(),user_apply_time,user_name,user_department,trip_destination,
                 trip_time_begin,trip_time_end,trip_reason,trip_phonecall);
 
-        boolean res = applyService.insertApplyInfo(apply);
+        long res = applyService.insertApplyInfo(apply);//返回成功时值为1
+
+        if(res == 1){
+            return apply_id;
+        }else{
+            return "申请失败，请重新申请";
+        }
 
 
-        return apply_id;
+
     }
 }

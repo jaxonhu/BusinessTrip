@@ -16,7 +16,7 @@ public class ApplyServiceImpl implements ApplyService {
     @Resource
     public ApplyDao applyDao;
     @Override
-    public boolean insertApplyInfo(Apply apply) {
+    public int insertApplyInfo(Apply apply) {
 
         return applyDao.insertApply(apply);
     }

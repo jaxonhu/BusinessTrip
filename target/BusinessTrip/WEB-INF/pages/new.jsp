@@ -193,18 +193,27 @@
          var final_json = "{user_name:"+user_name+",user_department:"+user_department+",user_applyTime:"+user_applyTime+",trip_destination:"+trip_destination+",trip_time_begin:"+trip_time_begin+",trip_time_end:"+trip_time_begin+",user_phonecall:"+user_phonecall+",trip_reason:"+trip_reason+",budget_data:"+budget_data+"}";
 //         var final_json = "{\"user_name\":\""+user_name+"\",\"user_department\":\""+user_department+"\",\"user_applyTime\":\""+user_applyTime+"\",\"trip_destination\":\""+trip_destination+"\",\"trip_time_begin\":\""+trip_time_begin+"\",\"trip_time_end\":\""+trip_time_begin+"\",\"user_phonecall\":\""+user_phonecall+"\",\"trip_reason\":\""+trip_reason+"\",\"budget_data\":"+budget_data+"}";
          var testdata = {
-             user_name: "胡家煊"
-
+             user_name: user_name,
+             user_department: user_department,
+             user_apply_time:user_applyTime,
+             trip_destination: trip_destination,
+             trip_time_begin: trip_time_begin,
+             trip_time_end: trip_time_end,
+             trip_reason: trip_reason,
+             user_phonecall: user_phonecall
          };
          $.ajax({
-             type:"POST",
+                 type:"POST",
              url: "/BusinessTrip/mytrip/new",
              data: testdata,
+             dataType: "text",
              success:function(data){
-
+                alert(data);
              },
-             error:function(){
-                alert("ajax连接失败");
+             error:function(XMLHttpRequest, textStatus, errorThrown) {
+                 alert(XMLHttpRequest.status);
+                 alert(XMLHttpRequest.readyState);
+                 alert(textStatus);
              }
          });
      }

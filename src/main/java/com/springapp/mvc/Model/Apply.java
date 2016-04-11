@@ -4,7 +4,8 @@ package com.springapp.mvc.Model;
  * Created by hujiaxuan on 2016/4/8.
  */
 public class Apply {
-    public Apply(String user_id, String user_apply_time, String user_account, String user_department, String trip_destination, String trip_time_begin, String trip_time_end, String trip_reason, String trip_phonecall) {
+    public Apply(String apply_id,String user_id, String user_apply_time, String user_account, String user_department, String trip_destination, String trip_time_begin, String trip_time_end, String trip_reason, String trip_phonecall) {
+        this.apply_id = apply_id;
         this.user_id = user_id;
         this.user_apply_time = user_apply_time;
         this.user_account = user_account;
@@ -15,7 +16,7 @@ public class Apply {
         this.trip_reason = trip_reason;
         this.trip_phonecall = trip_phonecall;
     }
-
+    private String apply_id;
     private String user_id;
     private String user_account;
     private String user_department;
@@ -25,6 +26,14 @@ public class Apply {
     private String trip_time_end;
     private String trip_reason;
     private String trip_phonecall;
+
+    public String getApply_id() {
+        return apply_id;
+    }
+
+    public void setApply_id(String apply_id) {
+        this.apply_id = apply_id;
+    }
 
     public String getUser_id() {
         return user_id;

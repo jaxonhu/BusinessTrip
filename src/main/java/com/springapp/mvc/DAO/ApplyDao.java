@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface ApplyDao {
-    public boolean insertApply(Apply apply);
+    public int insertApply(Apply apply);
 }

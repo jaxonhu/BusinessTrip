@@ -203,14 +203,17 @@
              user_phonecall: user_phonecall
          };
          $.ajax({
-             type:"POST",
+                 type:"POST",
              url: "/BusinessTrip/mytrip/new",
              data: testdata,
+             dataType: "text",
              success:function(data){
-
+                alert(data);
              },
-             error:function(){
-                alert("ajax连接失败");
+             error:function(XMLHttpRequest, textStatus, errorThrown) {
+                 alert(XMLHttpRequest.status);
+                 alert(XMLHttpRequest.readyState);
+                 alert(textStatus);
              }
          });
      }

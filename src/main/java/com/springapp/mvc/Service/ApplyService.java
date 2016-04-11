@@ -6,5 +6,5 @@ import com.springapp.mvc.Model.Apply;
  * Created by hujiaxuan on 2016/4/10.
  */
 public interface ApplyService {
-        public boolean insertApplyInfo(Apply apply);
+        public int insertApplyInfo(Apply apply);
 }
