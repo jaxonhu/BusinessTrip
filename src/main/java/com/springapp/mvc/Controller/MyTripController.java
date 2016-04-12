@@ -1,12 +1,12 @@
 package com.springapp.mvc.Controller;
 
-import com.springapp.mvc.Model.Apply;
-import com.springapp.mvc.Model.UserClient;
+import com.springapp.mvc.Model.*;
 import com.springapp.mvc.Service.ApplyService;
 import com.springapp.mvc.Service.UserClientService;
 import com.springapp.mvc.Utils.DateTransform;
 import com.springapp.mvc.Utils.IDworker;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by hujiaxuan on 2016/4/7.
@@ -30,7 +31,11 @@ public class MyTripController {
     @RequestMapping
     public ModelAndView index(){
 
-        return new ModelAndView("/mytrip");
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("mytrip");
+
+
+        return mv;
     }
     // user_name == name_account
     @RequestMapping(value = "/new",method = RequestMethod.POST)
@@ -57,8 +62,26 @@ public class MyTripController {
         }else{
             return "申请失败，请重新申请";
         }
+    }
+    @RequestMapping(value = "/addBudget",method = RequestMethod.POST)
+    @ResponseBody
+    public String addBudget(@RequestBody List<Budget> budgets)throws IOException{
 
+        String apply_id;
+        String budget_info;
+        String budget_class;
+        float budget_price;
+        int budget_num;
 
-
+        for(Budget budget :budgets){
+            apply_id = budget.apply_id;
+            budget_info = budget.budget_info;
+            budget_class = budget.budget_class;
+            budget_price = Float.parseFloat(budget.budget_price);
+            budget_num = Integer.parseInt(budget.budget_num);
+            BudgetBean budgetBean = new BudgetBean(apply_id,budget_info,budget_class,budget_price,budget_num);
+            applyService.insertBudget(budgetBean);
+        }
+        return "success";
     }
 }

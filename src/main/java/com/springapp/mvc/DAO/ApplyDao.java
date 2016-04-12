@@ -1,6 +1,7 @@
 package com.springapp.mvc.DAO;
 
 import com.springapp.mvc.Model.Apply;
+import com.springapp.mvc.Model.BudgetBean;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,4 +10,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ApplyDao {
     public int insertApply(Apply apply);
+    public int insertBudget(BudgetBean budgetBean);
 }

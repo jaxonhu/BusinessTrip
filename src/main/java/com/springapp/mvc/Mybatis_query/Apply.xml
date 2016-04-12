@@ -10,5 +10,8 @@
               values(#{apply_id},#{user_id},#{user_account},#{user_department},#{user_apply_time},#{trip_destination},#{trip_time_begin},
               #{trip_time_end},#{trip_reason},#{trip_phonecall},"","")
        </insert>
-
+       <insert id="insertBudget" parameterType="BudgetBean" keyProperty="id">
+              insert into budget(apply_id,budget_info,budget_class,budget_price,budget_num)
+              values(#{apply_id},#{budget_info},#{budget_class},#{budget_price},#{budget_num})
+       </insert>
 </mapper>

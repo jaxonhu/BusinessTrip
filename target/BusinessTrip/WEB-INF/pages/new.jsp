@@ -146,7 +146,7 @@
  <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
  <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
  <script>
-
+     var apply_id;
      $(function(){
          $("#datepicker_begin").datepicker();
          $("#datepicker_end").datepicker();
@@ -166,32 +166,8 @@
          var trip_reason = $("#trip_reason").val();
 
          var n = $(".budget_tbody>tr").length;
-         var budget_data="[";
-         for(var i = 0;i<n;i++){
-             var budget_info = $(".budget_instruction:eq('"+i+"')>input").val();
-             if(budget_info == ""){
-
-                 return ;
-             }
-             var budget_class = $(".budget_class:eq('"+i+"')>select").val();
-             var budget_price = $(".budget_price:eq('"+i+"')>input").val();
-             var budget_num = $(".budget_num:eq('"+i+"')>input").val();
-//             if(i!=(n-1)){
-//                 budget_data  =budget_data+ "{\"budget_info\":\""+budget_info+"\",\"budget_class\":\""+budget_class+"\",\"budget_price\":\""+budget_price+"\",\"budget_num\":\""+budget_num+"\"}" +",";
-//             }else{
-//                 budget_data  =budget_data+ "{\"budget_info\":\""+budget_info+"\",\"budget_class\":\""+budget_class+"\",\"budget_price\":\""+budget_price+"\",\"budget_num\":\""+budget_num+"\"}";
-//             }
-             if(i!=(n-1)){
-                 budget_data  =budget_data+ "{budget_info:"+budget_info+",budget_class:"+budget_class+",budget_price:"+budget_price+",budget_num:"+budget_num+"}" +",";
-             }else{
-                 budget_data  =budget_data+ "{budget_info:"+budget_info+",budget_class:"+budget_class+",budget_price:"+budget_price+",budget_num:"+budget_num+"}";
-             }
 
 
-         }
-         budget_data +="]";
-         var final_json = "{user_name:"+user_name+",user_department:"+user_department+",user_applyTime:"+user_applyTime+",trip_destination:"+trip_destination+",trip_time_begin:"+trip_time_begin+",trip_time_end:"+trip_time_begin+",user_phonecall:"+user_phonecall+",trip_reason:"+trip_reason+",budget_data:"+budget_data+"}";
-//         var final_json = "{\"user_name\":\""+user_name+"\",\"user_department\":\""+user_department+"\",\"user_applyTime\":\""+user_applyTime+"\",\"trip_destination\":\""+trip_destination+"\",\"trip_time_begin\":\""+trip_time_begin+"\",\"trip_time_end\":\""+trip_time_begin+"\",\"user_phonecall\":\""+user_phonecall+"\",\"trip_reason\":\""+trip_reason+"\",\"budget_data\":"+budget_data+"}";
          var testdata = {
              user_name: user_name,
              user_department: user_department,
@@ -202,15 +178,90 @@
              trip_reason: trip_reason,
              user_phonecall: user_phonecall
          };
+
+         for(var i = 0;i<n;i++){
+             var budget_info = $(".budget_instruction:eq('"+i+"')>input").val();
+
+             var budget_class = $(".budget_class:eq('"+i+"')>select").val();
+             var budget_price = $(".budget_price:eq('"+i+"')>input").val();
+             var budget_num = $(".budget_num:eq('"+i+"')>input").val();
+             if(budget_info == "" || budget_class == "" || budget_price == "" || budget_num == ""){
+                 alert("预算信息不能为空");
+                 return ;
+             }
+         }
+
          $.ajax({
-                 type:"POST",
+             type:"POST",
              url: "/BusinessTrip/mytrip/new",
              data: testdata,
              dataType: "text",
              success:function(data){
-                alert(data);
+                 apply_id = data;
+                 var budget_array = [];
+                 for(var j = 0;j<n;j++){
+                     var budget_info = $(".budget_instruction:eq('"+j+"')>input").val();
+
+                     var budget_class = $(".budget_class:eq('"+j+"')>select").val();
+                     var budget_price = $(".budget_price:eq('"+j+"')>input").val();
+                     var budget_num = $(".budget_num:eq('"+j+"')>input").val();
+                     var budget = {"apply_id":data,"budget_info":budget_info,"budget_class":budget_class,"budget_price":budget_price,"budget_num":budget_price};
+                     budget_array.push(budget);
+                 }
+
+//                 var budget_data="[";
+//                 for(var i = 0;i<n;i++){
+//                     var budget_info = $(".budget_instruction:eq('"+i+"')>input").val();
+//
+//                     var budget_class = $(".budget_class:eq('"+i+"')>select").val();
+//                     var budget_price = $(".budget_price:eq('"+i+"')>input").val();
+//                     var budget_num = $(".budget_num:eq('"+i+"')>input").val();
+//             if(i!=(n-1)){
+//                 budget_data  =budget_data+ "{\"apply_id\":\""+data+"\",\"budget_info\":\""+budget_info+"\",\"budget_class\":\""+budget_class+"\",\"budget_price\":\""+budget_price+"\",\"budget_num\":\""+budget_num+"\"}" +",";
+//             }else{
+//                 budget_data  =budget_data+ "{\"apply_id\":\""+data+"\",\"budget_info\":\""+budget_info+"\",\"budget_class\":\""+budget_class+"\",\"budget_price\":\""+budget_price+"\",\"budget_num\":\""+budget_num+"\"}";
+//             }
+////                     if(i!=(n-1)){
+////                         budget_data  =budget_data+ "{apply_id:"+data+",budget_info:"+budget_info+",budget_class:"+budget_class+",budget_price:"+budget_price+",budget_num:"+budget_num+"}" +",";
+////                     }else{
+////                         budget_data  =budget_data+ "{apply_id:"+data+",budget_info:"+budget_info+",budget_class:"+budget_class+",budget_price:"+budget_price+",budget_num:"+budget_num+"}";
+////                     }
+//
+//
+//                 }
+//                 budget_data +="]";
+                 send_budget_details(budget_array)
              },
              error:function(XMLHttpRequest, textStatus, errorThrown) {
+                 alert(XMLHttpRequest.status);
+                 alert(XMLHttpRequest.readyState);
+                 alert(textStatus);
+             }
+         });
+
+
+         var final_json = "{user_name:"+user_name+",user_department:"+user_department+",user_applyTime:"+user_applyTime+",trip_destination:"+trip_destination+",trip_time_begin:"+trip_time_begin+",trip_time_end:"+trip_time_begin+",user_phonecall:"+user_phonecall+",trip_reason:"+trip_reason+",budget_data:"+budget_data+"}";
+//         var final_json = "{\"user_name\":\""+user_name+"\",\"user_department\":\""+user_department+"\",\"user_applyTime\":\""+user_applyTime+"\",\"trip_destination\":\""+trip_destination+"\",\"trip_time_begin\":\""+trip_time_begin+"\",\"trip_time_end\":\""+trip_time_begin+"\",\"user_phonecall\":\""+user_phonecall+"\",\"trip_reason\":\""+trip_reason+"\",\"budget_data\":"+budget_data+"}";
+
+     }
+
+     function send_budget_details(budget_array){
+         var saveDataAry=[];
+         var data1={"userName":"test","address":"gz"};
+         var data2={"userName":"ququ","address":"gr"};
+         saveDataAry.push(data1);
+         saveDataAry.push(data2);
+         alert(JSON.stringify(saveDataAry));
+         alert(JSON.stringify(budget_array));
+         $.ajax({
+             type:"POST",
+             url: "/BusinessTrip/mytrip/addBudget",
+             contentType: "application/json",
+             data: JSON.stringify(budget_array),
+             success: function(){
+                alert("差旅申请成功");
+             },
+             error: function(XMLHttpRequest, textStatus, errorThrown) {
                  alert(XMLHttpRequest.status);
                  alert(XMLHttpRequest.readyState);
                  alert(textStatus);

@@ -3,6 +3,7 @@ package com.springapp.mvc.Service.Impl;
 import com.springapp.mvc.DAO.ApplyDao;
 import com.springapp.mvc.DAO.UserDao;
 import com.springapp.mvc.Model.Apply;
+import com.springapp.mvc.Model.BudgetBean;
 import com.springapp.mvc.Service.ApplyService;
 import org.springframework.stereotype.Service;
 
@@ -19,5 +20,10 @@ public class ApplyServiceImpl implements ApplyService {
     public int insertApplyInfo(Apply apply) {
 
         return applyDao.insertApply(apply);
+    }
+
+    @Override
+    public int insertBudget(BudgetBean budgetBean) {
+        return applyDao.insertBudget(budgetBean);
     }
 }

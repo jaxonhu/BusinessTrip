@@ -1,0 +1,22 @@
+.mytrip_table{
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+    width: 1000px;
+    top: 80px;
+
+}
+.table_button{
+    display: block;
+    text-decoration:none;
+    color: #FFF;
+    background: #7fb1f0;
+    width: 50px;
+    height: 25px;
+    border-radius: 3px;
+    margin: 0 auto;
+}
+.th_align_center{
+    text-align: center !important;
+}
