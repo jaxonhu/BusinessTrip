@@ -27,7 +27,7 @@
             <a href="" class="add_mytrip"></a>
             <div class="myprofile">
                 <a href="">
-                <img src="<c:url value="/resources/image/profile-full-male.png"/>" class="radius3 clearFix" alt="新建差旅">
+                    <img src="<c:url value="/resources/image/profile-full-male.png"/>" class="radius3 clearFix" alt="新建差旅">
             
                <p class="clearFix">${user.user_account}</p>
                <span class="header_drop"></span>

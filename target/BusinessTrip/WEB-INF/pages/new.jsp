@@ -87,28 +87,28 @@
             <div class="trip_info_left clearFix">
                 <ul class="ul_tripinfo1">
                     <li>
-                        申请人：<input class="info_input" type="text" id="trip_user"/>
+                        申请人：<input class="info_input" type="text" id="trip_user" value="${apply.user_account}"/>
                     </li>
                     <li>
-                        申请时间：<input class="info_input"type="text" id="trip_apply_time"/>
+                        申请时间：<input class="info_input"type="text" id="trip_apply_time" value="${apply.user_apply_time}"/>
                     </li>
                     <li>
-                        所属部门：<input class="info_input"type="text" id="trip_department"/>
+                        所属部门：<input class="info_input"type="text" id="trip_department" value="${apply.user_department}"/>
                     </li>
                     <li>
-                        差旅目的地：<input class="info_input"type="text" id="trip_destination"/>
+                        差旅目的地：<input class="info_input"type="text" id="trip_destination" value="${apply.trip_destination}"/>
                     </li>
                     <li>
-                        差旅起始时间：<input class="info_input" type="text" id="datepicker_begin"/>
+                        差旅起始时间：<input class="info_input" type="text" id="datepicker_begin" value="${apply.trip_time_begin}"/>
                     </li>
                     <li>
-                        差旅结束时间：<input class="info_input" type="text" id="datepicker_end"/>
+                        差旅结束时间：<input class="info_input" type="text" id="datepicker_end" value="${apply.trip_time_end}"/>
                     </li>
                     <li>
-                        联系电话：<input class="info_input"type="text" id="trip_phonecall"/>
+                        联系电话：<input class="info_input"type="text" id="trip_phonecall" value="${apply.trip_phonecall}"/>
                     </li>
                     <li>
-                        差旅事因：<textarea class="info_input"type="text" id="trip_reason"></textarea>
+                        差旅事因：<textarea class="info_input"type="text" id="trip_reason" value="${apply.trip_reason}"></textarea>
                     </li>
                 </ul>
                 <div class="trip_apply">
@@ -128,7 +128,7 @@
                         </tr>
                     </thead>
                     <tbody class="budget_tbody">
-                        
+
                     </tbody>
                 </table>
                 <div class="budget_btn">
@@ -283,6 +283,7 @@
          $("tbody").append(trHTML);
            
      };
+
      function deleteRow(){
          var n = $("tbody>tr").length;
          $("tbody>tr:eq("+(n-1)+")").remove();

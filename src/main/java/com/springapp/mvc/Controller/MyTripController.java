@@ -17,6 +17,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 import java.util.List;
 
 /**
@@ -50,6 +54,7 @@ public class MyTripController {
     // user_name == name_account
     @RequestMapping(value = "/new",method = RequestMethod.POST)
     public @ResponseBody String MyTripNew(HttpServletRequest request,HttpServletResponse response)throws IOException {
+        Date time_begin=null,time_end=null;
         String user_name = request.getParameter("user_name");
         String user_department = request.getParameter("user_department");
         String user_apply_time = request.getParameter("user_apply_time");
@@ -58,12 +63,21 @@ public class MyTripController {
         String trip_time_end = new DateTransform().date_transform( request.getParameter("trip_time_end"));
         String trip_reason = request.getParameter("trip_reason");
         String trip_phonecall = request.getParameter("user_phonecall");
-
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         IDworker iDworker = new IDworker(1);
         String  apply_id = Long.toString(iDworker.nextId());
         UserClient user = userService.selectUserByAccount(user_name);
+//        try{
+//             time_begin = sdf.parse(trip_time_begin);
+//             time_end = sdf.parse(trip_time_end);
+//        }catch (ParseException e){
+//            System.out.println(e);
+//        }
+        time_begin = Date.valueOf(trip_time_begin);
+        time_end = Date.valueOf(trip_time_end);
+
         Apply apply = new Apply(apply_id,user.getUser_id(),user_apply_time,user_name,user_department,trip_destination,
-                trip_time_begin,trip_time_end,trip_reason,trip_phonecall);
+                time_begin,time_end,trip_reason,trip_phonecall);
 
         long res = applyService.insertApplyInfo(apply);//返回成功时值为1
 

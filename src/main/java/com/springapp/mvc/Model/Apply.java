@@ -1,10 +1,13 @@
 package com.springapp.mvc.Model;
 
+
+import java.sql.Date;
+
 /**
  * Created by hujiaxuan on 2016/4/8.
  */
 public class Apply {
-    public Apply(String apply_id,String user_id, String user_apply_time, String user_account, String user_department, String trip_destination, String trip_time_begin, String trip_time_end, String trip_reason, String trip_phonecall) {
+    public Apply(String apply_id,String user_id, String user_apply_time, String user_account, String user_department, String trip_destination, Date trip_time_begin, Date trip_time_end, String trip_reason, String trip_phonecall) {
         this.apply_id = apply_id;
         this.user_id = user_id;
         this.user_apply_time = user_apply_time;
@@ -22,8 +25,8 @@ public class Apply {
     private String user_department;
     private String user_apply_time;
     private String trip_destination;
-    private String trip_time_begin;
-    private String trip_time_end;
+    private Date trip_time_begin;
+    private Date trip_time_end;
     private String trip_reason;
     private String trip_phonecall;
 
@@ -75,19 +78,19 @@ public class Apply {
         this.user_apply_time = user_apply_time;
     }
 
-    public String getTrip_time_end() {
+    public Date getTrip_time_end() {
         return trip_time_end;
     }
 
-    public void setTrip_time_end(String trip_time_end) {
+    public void setTrip_time_end(Date trip_time_end) {
         this.trip_time_end = trip_time_end;
     }
 
-    public String getTrip_time_begin() {
+    public Date getTrip_time_begin() {
         return trip_time_begin;
     }
 
-    public void setTrip_time_begin(String trip_time_begin) {
+    public void setTrip_time_begin(Date trip_time_begin) {
         this.trip_time_begin = trip_time_begin;
     }
 

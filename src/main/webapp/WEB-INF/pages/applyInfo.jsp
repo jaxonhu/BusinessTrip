@@ -185,7 +185,7 @@
 <script src="<c:url value="/resources/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 <script>
-    
+
 </script>
 </body>
 </html>

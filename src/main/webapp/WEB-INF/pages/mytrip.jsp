@@ -103,7 +103,7 @@
                      <c:forEach items="${applyShorts}" var="list" varStatus="vs">
                             <tr>
                                 <th>${vs.index}</th>
-                                <th><a href="javascript:void(0);" onclick="applyShow('${list.apply_id}')">${list.apply_id}</a></th>
+                                <th><a href="javascript:void(0);" onclick="applyShow('${list.apply_id}')">${list.budget_info}</a></th>
                                 <th>${list.apply_user}</th>
                                 <th>${list.trip_reason}</th>
                                 <th>${list.apply_state}</th>
@@ -125,10 +125,10 @@
 <script>
 
     function applyEdit(apply_id){
-
+        window.location.href = "/BusinessTrip/apply/"+apply_id;
     }
     function applyShow(apply_id){
-
+        window.location.href = "/BusinessTrip/applyInfo/"+apply_id;
     }
 </script>
 </body>

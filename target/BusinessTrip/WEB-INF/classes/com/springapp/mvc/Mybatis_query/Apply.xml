@@ -9,6 +9,14 @@
               <result column="trip_reason" property="trip_reason"/>
               <result column="apply_state" property="apply_state"/>
        </resultMap>
+       <resultMap id="budgetBean" type="BudgetBean">
+              <result column="apply_id" property="apply_id"/>
+              <result column="budget_info" property="budget_info"/>
+              <result column="budget_class" property="budget_class"/>
+              <result column="budget_price" property="budget_price"/>
+              <result column="budget_num" property="budget_num"/>
+
+       </resultMap>
        <insert id="insertApply" parameterType="Apply"   keyProperty="id">
               insert into apply(apply_id,user_id,user_account,user_department,user_apply_time,trip_destination,
               trip_time_begin,trip_time_end,trip_reason,trip_phonecall,manager_comment,high_manager_comment,apply_state)
@@ -22,5 +30,11 @@
        <select id="selectApplyShortByuserId" parameterType="String" resultMap="applyShort">
               select apply_id,user_account,trip_reason,apply_state from apply where user_id=#{user_id};
        </select>
-
+       <select id="selectApplyByapply_id" parameterType="String" resultType="Apply">
+              select apply_id,user_id,user_apply_time,user_account,user_department,trip_destination,trip_time_begin,
+              trip_time_end,trip_reason,trip_phonecall from apply where apply_id=#{apply_id};
+       </select>
+       <select id="selectAllBudgetByApplyId" parameterType="String" resultMap="budgetBean">
+              select apply_id,budget_info,budget_class,budget_price,budget_num from budget where apply_id=#{apply_Id}
+       </select>
 </mapper>

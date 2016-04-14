@@ -4,13 +4,13 @@ package com.springapp.mvc.Model;
  * Created by hujiaxuan on 2016/4/11.
  */
 public class BudgetBean {
-    private String apply_id;
-    private String budget_info;
-    private String budget_class;
-    private float budget_price;
-    private int budget_num;
+    public String apply_id;
+    public String budget_info;
+    public String budget_class;
+    public java.lang.Float budget_price;
+    public java.lang.Integer budget_num;
 
-    public BudgetBean(String apply_id, String budget_info, String budget_class, float budget_price, int budget_num) {
+    public BudgetBean(String apply_id, String budget_info, String budget_class, java.lang.Float  budget_price, java.lang.Integer budget_num) {
         this.apply_id = apply_id;
         this.budget_info = budget_info;
         this.budget_class = budget_class;

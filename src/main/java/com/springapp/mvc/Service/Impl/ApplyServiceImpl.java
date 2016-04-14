@@ -34,4 +34,14 @@ public class ApplyServiceImpl implements ApplyService {
 
         return applyDao.selectApplyShortByuserId(user_id);
     }
+
+    @Override
+    public Apply selectApplyByapplyId(String apply_id) {
+        return applyDao.selectApplyByapply_id(apply_id);
+    }
+
+    @Override
+    public List<BudgetBean> selectAllBudgetByApplyId(String apply_id) {
+        return applyDao.selectAllBudgetByApplyId(apply_id);
+    }
 }

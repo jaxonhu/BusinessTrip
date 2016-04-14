@@ -13,4 +13,6 @@ public interface ApplyService {
         public int insertApplyInfo(Apply apply);
         public int insertBudget(BudgetBean budgetBean);
         public List<ApplyShort> selectAllApplyShortByuserId(String user_id);
+        public Apply selectApplyByapplyId(String apply_id);
+        public List<BudgetBean> selectAllBudgetByApplyId(String apply_id);
 }
