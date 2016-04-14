@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -29,9 +30,18 @@ public class MyTripController {
     @Resource
     public ApplyService applyService;
     @RequestMapping
-    public ModelAndView index(){
+    public ModelAndView index(HttpServletRequest request,HttpServletResponse response)throws  IOException{
 
         ModelAndView mv = new ModelAndView();
+        HttpSession session = request.getSession();
+
+        String user_id = (String)session.getAttribute("user_id");
+
+        if(!user_id.equals("")){
+            List<ApplyShort> applyShorts = applyService.selectAllApplyShortByuserId(user_id);
+            mv.addObject("applyShorts",applyShorts);
+        }
+
         mv.setViewName("mytrip");
 
 
@@ -47,7 +57,7 @@ public class MyTripController {
         String trip_time_begin = new DateTransform().date_transform(request.getParameter("trip_time_begin"));
         String trip_time_end = new DateTransform().date_transform( request.getParameter("trip_time_end"));
         String trip_reason = request.getParameter("trip_reason");
-        String trip_phonecall = request.getParameter("trip_phonecall");
+        String trip_phonecall = request.getParameter("user_phonecall");
 
         IDworker iDworker = new IDworker(1);
         String  apply_id = Long.toString(iDworker.nextId());

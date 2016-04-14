@@ -50,7 +50,7 @@
                     <span class="left_sidebar_title">首页</span>
                 </span>
             </a>
-            <a href="">
+            <a href="<%=request.getContextPath()%>/mytrip">
                  <span class="span_item">
                     <span class="nav_icons home"></span>
                     <span class="left_sidebar_title">我的差旅</span>

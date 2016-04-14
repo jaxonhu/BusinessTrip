@@ -3,15 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.springapp.mvc.DAO.ApplyDao">
-
+       <resultMap id="applyShort" type="ApplyShort">
+              <result column="apply_id" property="apply_id"/>
+              <result column="user_account" property="apply_user"/>
+              <result column="trip_reason" property="trip_reason"/>
+              <result column="apply_state" property="apply_state"/>
+       </resultMap>
        <insert id="insertApply" parameterType="Apply"   keyProperty="id">
               insert into apply(apply_id,user_id,user_account,user_department,user_apply_time,trip_destination,
-              trip_time_begin,trip_time_end,trip_reason,trip_phonecall,manager_comment,high_manager_comment)
+              trip_time_begin,trip_time_end,trip_reason,trip_phonecall,manager_comment,high_manager_comment,apply_state)
               values(#{apply_id},#{user_id},#{user_account},#{user_department},#{user_apply_time},#{trip_destination},#{trip_time_begin},
-              #{trip_time_end},#{trip_reason},#{trip_phonecall},"","")
+              #{trip_time_end},#{trip_reason},#{trip_phonecall},"","","待审核")
        </insert>
        <insert id="insertBudget" parameterType="BudgetBean" keyProperty="id">
               insert into budget(apply_id,budget_info,budget_class,budget_price,budget_num)
               values(#{apply_id},#{budget_info},#{budget_class},#{budget_price},#{budget_num})
        </insert>
+       <select id="selectApplyShortByuserId" parameterType="String" resultMap="applyShort">
+              select apply_id,user_account,trip_reason,apply_state from apply where user_id=#{user_id};
+       </select>
+
 </mapper>

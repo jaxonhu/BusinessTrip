@@ -5,7 +5,6 @@
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
-    <link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="<c:url value="/resources/style/home.css"/>" type="text/css">
     <link rel="stylesheet" href="<c:url value="/resources/style/header.css"/>" type="text/css">
     <link rel="stylesheet" href="<c:url value="/resources/style/common.css"/>" type="text/css">
@@ -15,6 +14,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/style/bootstrap.min.css"/>" type="text/css">
     <link rel="stylesheet" href="<c:url value="/resources/style/common.css"/>" type="text/css">
     <link rel="stylesheet" href="<c:url value="/resources/style/mytrip.css"/>" type="text/css"/>
+    <link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css">
 </head>
 <body>
 <div class="header ">
@@ -30,7 +30,7 @@
         <a href="" class="add_mytrip"></a>
         <div class="myprofile">
             <a href="">
-                <img src="../image/profile-full-male.png" class="radius3 clearFix" alt="新建差旅">
+                <img src="<c:url value="/resources/image/profile-full-male.png"/>" class="radius3 clearFix" alt="新建差旅">
 
                 <p class="clearFix">胡家煊</p>
                 <span class="header_drop"></span>
@@ -99,14 +99,17 @@
                         </tr>
                     </thread>
                     <tbody>
-                        <tr>
-                            <th>1</th>
-                            <th><a href="#">232342342</a></th>
-                            <th>胡家煊</th>
-                            <th>去北京准备面试</th>
-                            <th>待定</th>
-                            <th class="th_align_center"><a href="javascript:void(0);" class="table_button"><i class="fa fa-pencil"></i></a></th>
-                        </tr>
+
+                     <c:forEach items="${applyShorts}" var="list" varStatus="vs">
+                            <tr>
+                                <th>${vs.index}</th>
+                                <th><a href="javascript:void(0);" onclick="applyShow('${list.apply_id}')">${list.apply_id}</a></th>
+                                <th>${list.apply_user}</th>
+                                <th>${list.trip_reason}</th>
+                                <th>${list.apply_state}</th>
+                                <th class="th_align_center"><a href="javascript:void(0);" onclick="applyEdit('${list.apply_id}');" class="table_button"><i class="fa fa-pencil">修改</i></a></th>
+                            </tr>
+                     </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -121,7 +124,12 @@
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script>
 
+    function applyEdit(apply_id){
 
+    }
+    function applyShow(apply_id){
+
+    }
 </script>
 </body>
 </html>

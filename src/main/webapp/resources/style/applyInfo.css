@@ -1,0 +1,52 @@
+.trip_report{
+    display: block;
+    width: 700px;
+    float: left;
+    position: relative;
+    left: 20px;
+    border: 1px solid #aaaaaa;
+    top: 20px;
+}
+
+.table_right{
+    float: right;
+    height: 500px;
+    position: relative;
+    width:300px;
+    margin: 20px 30px 10px 20px;
+    background: #f7f7f7;
+    box-shadow: -2px 0px 5px rgba(0,0,0,0.2);
+}
+.process_title{
+    padding: 5px 10px 5px 5px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.process_item{
+    width: 100%;
+    /*border-bottom: 1px solid #e5e5e5;*/
+    box-shadow:0px 1px 3px rgba(0,0,0,0.2);
+}
+.process_item>img{
+    margin: 5px 5px 10px 5px;
+    width: 40px;
+    height: 40px;
+    float: left;
+}
+.item_text{
+    float: right;
+    width: 250px;
+}
+.item_text >span{
+    margin-left: 5px;
+    color: #999;
+    font-size: 13px;
+}
+.item_text>a{
+    font-size:  13px;
+    color: #4183C4;
+}
+.item_text > p {
+    font-size: 14px;
+    color: #aaaaaa;
+    margin: 5px 5px 5px 5px !important;
+}
