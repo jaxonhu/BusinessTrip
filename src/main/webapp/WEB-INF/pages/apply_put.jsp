@@ -214,8 +214,8 @@
     }
 
     $.ajax({
-      type:"POST",
-      url: "/BusinessTrip/mytrip/new",
+      type:"PUT",
+      url: "/BusinessTrip/mytrip/update",
       data: testdata,
       dataType: "text",
       success:function(data){
@@ -276,8 +276,8 @@
     alert(JSON.stringify(saveDataAry));
     alert(JSON.stringify(budget_array));
     $.ajax({
-      type:"POST",
-      url: "/BusinessTrip/mytrip/addBudget",
+      type:"PUT",
+      url: "/BusinessTrip/mytrip/putBudget",
       contentType: "application/json",
       data: JSON.stringify(budget_array),
       success: function(){

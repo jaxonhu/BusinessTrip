@@ -17,4 +17,6 @@ public interface ApplyDao {
     public List<ApplyShort> selectApplyShortByuserId(String user_id);
     public Apply selectApplyByapply_id(String apply_id);
     public List<BudgetBean> selectAllBudgetByApplyId(String apply_id);
+    public int updateApplyInfo(Apply apply);
+    public int updateBudget(BudgetBean budgetBean);
 }

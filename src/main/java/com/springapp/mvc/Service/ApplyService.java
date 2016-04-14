@@ -15,4 +15,6 @@ public interface ApplyService {
         public List<ApplyShort> selectAllApplyShortByuserId(String user_id);
         public Apply selectApplyByapplyId(String apply_id);
         public List<BudgetBean> selectAllBudgetByApplyId(String apply_id);
+        public int updateApplyInfo(Apply apply);
+        public int updateBudget(BudgetBean budgetBean);
 }

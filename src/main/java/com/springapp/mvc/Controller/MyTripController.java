@@ -108,4 +108,53 @@ public class MyTripController {
         }
         return "success";
     }
+    @RequestMapping(value = "/putBudget",method = RequestMethod.PUT)
+    @ResponseBody
+    public String updateBudget(@RequestBody List<Budget> budgets)throws IOException{
+        String apply_id;
+        String budget_info;
+        String budget_class;
+        float budget_price;
+        int budget_num;
+
+        for(Budget budget :budgets){
+            apply_id = budget.apply_id;
+            budget_info = budget.budget_info;
+            budget_class = budget.budget_class;
+            budget_price = Float.parseFloat(budget.budget_price);
+            budget_num = Integer.parseInt(budget.budget_num);
+            BudgetBean budgetBean = new BudgetBean(apply_id,budget_info,budget_class,budget_price,budget_num);
+            applyService.updateBudget(budgetBean);
+        }
+        return "success";
+    }
+    @RequestMapping(value = "/update",method = RequestMethod.PUT)
+    @ResponseBody
+    public String applyUpdate(HttpServletRequest request,HttpServletResponse response)throws IOException{
+
+        Date time_begin=null,time_end=null;
+        String user_name = request.getParameter("user_name");
+        String user_department = request.getParameter("user_department");
+        String user_apply_time = request.getParameter("user_apply_time");
+        String trip_destination = request.getParameter("trip_destination");
+        String trip_time_begin = new DateTransform().date_transform(request.getParameter("trip_time_begin"));
+        String trip_time_end = new DateTransform().date_transform( request.getParameter("trip_time_end"));
+        String trip_reason = request.getParameter("trip_reason");
+        String trip_phonecall = request.getParameter("user_phonecall");
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        IDworker iDworker = new IDworker(1);
+        String  apply_id = Long.toString(iDworker.nextId());
+        UserClient user = userService.selectUserByAccount(user_name);
+        time_begin = Date.valueOf(trip_time_begin);
+        time_end = Date.valueOf(trip_time_end);
+        Apply apply = new Apply(apply_id,user.getUser_id(),user_apply_time,user_name,user_department,trip_destination,
+                time_begin,time_end,trip_reason,trip_phonecall);
+        long res = applyService.updateApplyInfo(apply);
+        if(res == 1){
+            return apply_id;
+        }else{
+            return "更新失败，请重试";
+        }
+
+    }
 }
