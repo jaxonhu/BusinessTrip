@@ -104,13 +104,13 @@
                     <th colspan="1">部门</th>
                     <th colspan="2">asd</th>
                     <th colspan="1">姓名</th>
-                    <th colspan="2">asd</th>
+                    <th colspan="2">${apply.user_account}</th>
                     <th colspan="1">目的地</th>
-                    <th colspan="2">asdas</th>
+                    <th colspan="2">${apply.trip_destination}</th>
                 </tr>
                 <tr>
                     <th colspan="1">事由</th>
-                    <th colspan="7">sda</th>
+                    <th colspan="7">${apply.trip_reason}</th>
                 </tr>
                 <tr>
                     <th colspan="1">交通工具</th>
@@ -121,48 +121,36 @@
                     <input type="checkbox" checked/>私家车</th>
                 </tr>
                 <tr>
-                    <th rowspan="6">预算申请</th>
-                    <th colspan="1">交通费(元)</th><th colspan="2">300</th>
-                    <th colspan="1">明细</th><th colspan="3">aaaaaaaa</th>
+                    <th colspan="8">预算申请</th>
                 </tr>
-                <tr>
 
-                    <th colspan="1">住宿费(元)</th><th colspan="2">300</th>
-                    <th colspan="1">明细</th><th colspan="3">aaaaaaaa</th>
-                </tr>
+                <c:forEach items="${budgets}" var="item" varStatus="vs">
+                    <tr>
+                        <th colspan="1">${item.budget_class}(元)</th><th colspan="1">${item.budget_price}</th>
+                        <th colspan="2">数量</th><th colspan="2">${item.budget_num}</th>
+                        <th colspan="1">明细</th><th colspan="1">${item.budget_info}</th>
+                    </tr>
+                </c:forEach>
                 <tr>
-
-                    <th colspan="1">餐饮费(元)</th><th colspan="2">300</th>
-                    <th colspan="1">明细</th><th colspan="3">aaaaaaaa</th>
-                </tr>
-                <tr>
-
-                    <th colspan="1">招待费(元)</th><th colspan="2">300</th>
-                    <th colspan="1">明细</th><th colspan="3">aaaaaaaa</th>
-                </tr>
-                <tr>
-
-                    <th colspan="1">其他(元)</th><th colspan="2">300</th>
-                    <th colspan="1">明细</th><th colspan="3">aaaaaaaa</th>
-                </tr>
-                <tr>
-
-                    <th colspan="5">合计</th><th colspan="5">300</th>
+                    <th colspan="5">合计</th><th colspan="5">${apply.budget_money}</th>
 
                 </tr>
                 <tr >
                     <th rowspan="1" style="height: 100px !important;">差旅汇报</th>
-                    <th rowspan="1" colspan="7" style="height: 100px !important;">asd</th>
+                    <th rowspan="1" colspan="7" style="height: 100px !important;"></th>
                 </tr>
                 <tr>
                     <th colspan="1">差旅达成情况</th>
                     <th colspan="7">
-                        <input type="checkbox" checked/>达成
+                        <input type="checkbox"  checked/>达成
                         <input type="checkbox" checked/>基本达成
                         <input type="checkbox" checked/>未达成
                     </th>
                 </tr>
-
+                <tr>
+                    <th colspan="1">差旅申请状态</th>
+                    <th colspan="7">${apply.apply_state}</th>
+                </tr>
 
             </tbody>
         </table>
@@ -170,7 +158,7 @@
         <div class="table_right">
             <div class="process_title">处理流程</div>
             <div class="process_item clearFix">
-                <img src="../image/profile-full-male.png" class="clearFix" alt=""/>
+                <img src="<c:url value="/resources/image/profile-full-male.png"/>" class="clearFix" alt=""/>
                 <div class="item_text clearFix">
                     <a href="#">胡家煊</a><span>2016/4/14</span>
                     <p>已经提交审批</p>

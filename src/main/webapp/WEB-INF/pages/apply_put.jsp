@@ -108,11 +108,11 @@
           联系电话：<input class="info_input"type="text" id="trip_phonecall" value="${apply.trip_phonecall}"/>
         </li>
         <li>
-          差旅事因：<textarea class="info_input"type="text" id="trip_reason" value="${apply.trip_reason}"></textarea>
+          差旅事因：<textarea class="info_input" type="text" id="trip_reason">${apply.trip_reason}</textarea>
         </li>
       </ul>
       <div class="trip_apply">
-        <a class="budget" href="javascript:void(0);" onclick="Trip_Apply();" >确认修改</a>
+        <a class="budget" href="javascript:void(0);" onclick="Trip_Apply('${apply.apply_id}');" >确认修改</a>
       </div>
     </div>
     <div class="trip_info_right">
@@ -133,7 +133,7 @@
             <th scope="row">${vs.index}</th>
             <th class="budget_instruction"><input type='text' class='thinput input_long' value="${item.budget_info}"/></th>
             <th class="budget_class">
-              <select onchange="choose_select(this,'${item.budget_class}')" >
+              <select onchange="choose_select(this,'${item.budget_class}');">
                 <option value="交通">交通</option>
                 <option value="餐饮">餐饮</option>
                 <option value="住宿">住宿</option>
@@ -168,16 +168,29 @@
 <script>
   var apply_id;
   $(function(){
-    $("#datepicker_begin").datepicker();
-    $("#datepicker_end").datepicker();
+    $("#datepicker_begin").datepicker({format:'yy-mm-dd'});
+    $("#datepicker_end").datepicker({format:'yy-mm-dd'});
     var tr = document.getElementsByTagName("tr");
     var th = tr[0].firstElementChild;
-    $("select").each(function(index){
-      this.childNodes[0].selected = true;
-    });
+//    $("select").each(function(index){
+////      alert(this.options[0].innerHTML);
+//      this.options[2].selected = true;
+//    });
+
+      $("select").each(function(index){
+        var e = document.createEvent('HTMLEvents');
+        e.initEvent("change",false,false);
+        this.dispatchEvent(e);
+      });
+
+//    var obj = document.getElementsByTagName("select")[0];
+//    obj.fireEvent("onchange");
 
   });
-  function Trip_Apply(){
+//  function update_reason(obj){
+//      obj.
+//  }
+  function Trip_Apply(apply_id){
     var user_name = $("#trip_user").val();
     var user_department = $("#trip_department").val();
     var user_applyTime = $("#trip_apply_time").val();
@@ -185,12 +198,11 @@
     var trip_time_begin = $("#datepicker_begin").val();
     var trip_time_end = $("#datepicker_end").val();
     var user_phonecall = $("#trip_phonecall").val();
-    var trip_reason = $("#trip_reason").val();
+    var trip_reason = document.getElementById("trip_reason").value;
 
     var n = $(".budget_tbody>tr").length;
-
-
     var testdata = {
+      apply_id:apply_id,
       user_name: user_name,
       user_department: user_department,
       user_apply_time:user_applyTime,
@@ -214,7 +226,7 @@
     }
 
     $.ajax({
-      type:"PUT",
+      type:"POST",
       url: "/BusinessTrip/mytrip/update",
       data: testdata,
       dataType: "text",
@@ -262,7 +274,7 @@
     });
 
 
-    var final_json = "{user_name:"+user_name+",user_department:"+user_department+",user_applyTime:"+user_applyTime+",trip_destination:"+trip_destination+",trip_time_begin:"+trip_time_begin+",trip_time_end:"+trip_time_begin+",user_phonecall:"+user_phonecall+",trip_reason:"+trip_reason+",budget_data:"+budget_data+"}";
+  //  var final_json = "{user_name:"+user_name+",user_department:"+user_department+",user_applyTime:"+user_applyTime+",trip_destination:"+trip_destination+",trip_time_begin:"+trip_time_begin+",trip_time_end:"+trip_time_begin+",user_phonecall:"+user_phonecall+",trip_reason:"+trip_reason+",budget_data:"+budget_data+"}";
 //         var final_json = "{\"user_name\":\""+user_name+"\",\"user_department\":\""+user_department+"\",\"user_applyTime\":\""+user_applyTime+"\",\"trip_destination\":\""+trip_destination+"\",\"trip_time_begin\":\""+trip_time_begin+"\",\"trip_time_end\":\""+trip_time_begin+"\",\"user_phonecall\":\""+user_phonecall+"\",\"trip_reason\":\""+trip_reason+"\",\"budget_data\":"+budget_data+"}";
 
   }
@@ -273,15 +285,17 @@
     var data2={"userName":"ququ","address":"gr"};
     saveDataAry.push(data1);
     saveDataAry.push(data2);
-    alert(JSON.stringify(saveDataAry));
     alert(JSON.stringify(budget_array));
     $.ajax({
-      type:"PUT",
-      url: "/BusinessTrip/mytrip/putBudget",
+      type:"POST",
+      url: "/BusinessTrip/mytrip/updateBudget",
       contentType: "application/json",
       data: JSON.stringify(budget_array),
-      success: function(){
-        alert("差旅申请成功");
+      success: function(data){
+        if(data=="success"){
+          alert("差旅申请更新成功");
+        }
+
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
         alert(XMLHttpRequest.status);
@@ -307,13 +321,14 @@
   };
 
   function choose_select(obj,str){
+
     switch(str){
-      case '交通':obj.childNodes[0].selected = true;break;
-      case '餐饮':obj.childNodes[1].selected = true;break;
-      case '住宿':obj.childNodes[2].selected = true;break;
-      case '招待':obj.childNodes[3].selected = true;break;
-      case '其他':obj.childNodes[4].selected = true;break;
-      default : obj.childNodes[0].selected = true;
+      case '交通':obj.options[0].selected = true;break;
+      case '餐饮':obj.options[1].selected = true;break;
+      case '住宿':obj.options[2].selected = true;break;
+      case '招待':obj.options[3].selected = true;break;
+      case '其他':obj.options[4].selected = true;break;
+      default : obj.options[5].selected = true;
     }
   }
   function deleteRow(){

@@ -13,8 +13,16 @@ import java.util.Date;
 * */
 public class DateTransform {
     public String date_transform(String pre_date){
-        String[] dateString = pre_date.split("/");
-        String res = dateString[2]+"-"+dateString[0]+"-"+dateString[1];
-        return res;
+
+        if(pre_date.indexOf("/")>0){
+            String[] dateString = pre_date.split("/");
+            String res = dateString[2]+"-"+dateString[0]+"-"+dateString[1];
+            return res;
+        }
+
+        if(pre_date.indexOf("-")>0){
+            return  pre_date;
+        }
+        return "";
     }
 }

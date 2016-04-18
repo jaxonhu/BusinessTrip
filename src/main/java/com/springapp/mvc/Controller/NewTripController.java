@@ -28,7 +28,7 @@ public class NewTripController {
         return mv;
     }
     @RequestMapping(value ="/{apply_id}")
-    public ModelAndView updateApply(@PathVariable("apply_id")String apply_id)throws IOException{
+    public ModelAndView getUpdateApply(@PathVariable("apply_id")String apply_id)throws IOException{
         ModelAndView mv = new ModelAndView();
 
         Apply apply = applyService.selectApplyByapplyId(apply_id);

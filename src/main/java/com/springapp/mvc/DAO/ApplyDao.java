@@ -19,4 +19,8 @@ public interface ApplyDao {
     public List<BudgetBean> selectAllBudgetByApplyId(String apply_id);
     public int updateApplyInfo(Apply apply);
     public int updateBudget(BudgetBean budgetBean);
+    public int deleteBudgetByApplyId(String apply_id);
+    public int updateApplyMoney(java.lang.Float money,String apply_id);
+    public float getApplyMoney(String apply_id);
+    public String getApplyStateByApplyId(String apply_id);
 }

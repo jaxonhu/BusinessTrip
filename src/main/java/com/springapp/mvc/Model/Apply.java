@@ -7,7 +7,7 @@ import java.sql.Date;
  * Created by hujiaxuan on 2016/4/8.
  */
 public class Apply {
-    public Apply(String apply_id,String user_id, String user_apply_time, String user_account, String user_department, String trip_destination, Date trip_time_begin, Date trip_time_end, String trip_reason, String trip_phonecall) {
+    public Apply(String apply_id,String user_id, String user_apply_time, String user_account, String user_department, String trip_destination, Date trip_time_begin, Date trip_time_end, String trip_reason, String trip_phonecall,String apply_state) {
         this.apply_id = apply_id;
         this.user_id = user_id;
         this.user_apply_time = user_apply_time;
@@ -18,6 +18,7 @@ public class Apply {
         this.trip_time_end = trip_time_end;
         this.trip_reason = trip_reason;
         this.trip_phonecall = trip_phonecall;
+        this.apply_state = apply_state;
     }
     private String apply_id;
     private String user_id;
@@ -29,6 +30,33 @@ public class Apply {
     private Date trip_time_end;
     private String trip_reason;
     private String trip_phonecall;
+    public String apply_state;//差旅申请状态：待审批，审批通过，审批不通过
+    public  String apply_res;//差旅汇报
+    public float budget_money;//差旅申请总预算
+
+    public String getApply_state() {
+        return apply_state;
+    }
+
+    public void setApply_state(String apply_state) {
+        this.apply_state = apply_state;
+    }
+
+    public String getApply_res() {
+        return apply_res;
+    }
+
+    public void setApply_res(String apply_res) {
+        this.apply_res = apply_res;
+    }
+
+    public float getBudget_money() {
+        return budget_money;
+    }
+
+    public void setBudget_money(float budget_money) {
+        this.budget_money = budget_money;
+    }
 
     public String getApply_id() {
         return apply_id;

@@ -21,7 +21,7 @@
               insert into apply(apply_id,user_id,user_account,user_department,user_apply_time,trip_destination,
               trip_time_begin,trip_time_end,trip_reason,trip_phonecall,manager_comment,high_manager_comment,apply_state)
               values(#{apply_id},#{user_id},#{user_account},#{user_department},#{user_apply_time},#{trip_destination},#{trip_time_begin},
-              #{trip_time_end},#{trip_reason},#{trip_phonecall},"","","待审核")
+              #{trip_time_end},#{trip_reason},#{trip_phonecall},"","",#{apply_state},"",0)
        </insert>
        <insert id="insertBudget" parameterType="BudgetBean" keyProperty="id">
               insert into budget(apply_id,budget_info,budget_class,budget_price,budget_num)
@@ -32,9 +32,30 @@
        </select>
        <select id="selectApplyByapply_id" parameterType="String" resultType="Apply">
               select apply_id,user_id,user_apply_time,user_account,user_department,trip_destination,trip_time_begin,
-              trip_time_end,trip_reason,trip_phonecall from apply where apply_id=#{apply_id};
+              trip_time_end,trip_reason,trip_phonecall,apply_state from apply where apply_id=#{apply_id};
        </select>
        <select id="selectAllBudgetByApplyId" parameterType="String" resultMap="budgetBean">
               select apply_id,budget_info,budget_class,budget_price,budget_num from budget where apply_id=#{apply_Id}
+       </select>
+       <update id="updateApplyInfo" parameterType="Apply">
+              update apply set user_apply_time=#{user_apply_time},user_account=#{user_account},
+              user_department=#{user_department},trip_destination=#{trip_destination},trip_time_begin=#{trip_time_begin},
+              trip_time_end=#{trip_time_end},trip_reason=#{trip_reason},trip_phonecall=#{trip_phonecall} where apply_id=#{apply_id}
+       </update>
+       <update id="updateBudget" parameterType="BudgetBean">
+              update budget set apply_id=#{apply_id},budget_info=#{budget_info},budget_class=#{budget_class},
+              budget_price=#{budget_price},budget_num=#{budget_num} where apply_id=#{apply_id};
+       </update>
+       <delete id="deleteBudgetByApplyId" parameterType="String">
+              delete from budget where apply_id=#{apply_id}
+       </delete>
+       <update id="updateApplyMoney" parameterType="Float">
+              update apply set budget_money=#{money} where apply_id=#{apply_id}
+       </update>
+       <select id="getApplyMoney" parameterType="String" resultType="Float">
+              select budget_money from apply where apply_id=#{apply_id}
+       </select>
+       <select id="getApplyStateByApplyId" parameterType="String" resultType="String">
+              select apply_state from apply where apply_id=#{apply_id}
        </select>
 </mapper>

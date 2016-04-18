@@ -33,6 +33,7 @@ public class MyTripController {
     public UserClientService userService;
     @Resource
     public ApplyService applyService;
+
     @RequestMapping
     public ModelAndView index(HttpServletRequest request,HttpServletResponse response)throws  IOException{
 
@@ -67,17 +68,12 @@ public class MyTripController {
         IDworker iDworker = new IDworker(1);
         String  apply_id = Long.toString(iDworker.nextId());
         UserClient user = userService.selectUserByAccount(user_name);
-//        try{
-//             time_begin = sdf.parse(trip_time_begin);
-//             time_end = sdf.parse(trip_time_end);
-//        }catch (ParseException e){
-//            System.out.println(e);
-//        }
+
         time_begin = Date.valueOf(trip_time_begin);
         time_end = Date.valueOf(trip_time_end);
 
         Apply apply = new Apply(apply_id,user.getUser_id(),user_apply_time,user_name,user_department,trip_destination,
-                time_begin,time_end,trip_reason,trip_phonecall);
+                time_begin,time_end,trip_reason,trip_phonecall,"待审批");
 
         long res = applyService.insertApplyInfo(apply);//返回成功时值为1
 
@@ -97,6 +93,36 @@ public class MyTripController {
         float budget_price;
         int budget_num;
 
+        applyService.insertBudgets(budgets);
+
+        for(Budget budget :budgets){
+            apply_id = budget.apply_id;
+            budget_info = budget.budget_info;
+            budget_class = budget.budget_class;
+            budget_price = Float.parseFloat(budget.budget_price);
+            budget_num = Integer.parseInt(budget.budget_num);
+
+            BudgetBean budgetBean = new BudgetBean(apply_id,budget_info,budget_class,budget_price,budget_num);
+            applyService.insertBudget(budgetBean);
+        }
+        int res = applyService.caculateApplyBudget(budgets);
+        return "success";
+    }
+    @RequestMapping(value = "/updateBudget",method = RequestMethod.POST)
+    @ResponseBody
+    public String updateBudget(@RequestBody List<Budget> budgets)throws IOException{
+        String apply_id;
+        String budget_info;
+        String budget_class;
+        float budget_price;
+        int budget_num;
+
+        apply_id = budgets.get(0).apply_id;
+        //这里如果预算列表为空怎样处理
+        int res= applyService.deleteBudgetByApplyId(apply_id);
+
+
+
         for(Budget budget :budgets){
             apply_id = budget.apply_id;
             budget_info = budget.budget_info;
@@ -106,29 +132,10 @@ public class MyTripController {
             BudgetBean budgetBean = new BudgetBean(apply_id,budget_info,budget_class,budget_price,budget_num);
             applyService.insertBudget(budgetBean);
         }
+        int res2 = applyService.caculateApplyBudget(budgets);
         return "success";
     }
-    @RequestMapping(value = "/putBudget",method = RequestMethod.PUT)
-    @ResponseBody
-    public String updateBudget(@RequestBody List<Budget> budgets)throws IOException{
-        String apply_id;
-        String budget_info;
-        String budget_class;
-        float budget_price;
-        int budget_num;
-
-        for(Budget budget :budgets){
-            apply_id = budget.apply_id;
-            budget_info = budget.budget_info;
-            budget_class = budget.budget_class;
-            budget_price = Float.parseFloat(budget.budget_price);
-            budget_num = Integer.parseInt(budget.budget_num);
-            BudgetBean budgetBean = new BudgetBean(apply_id,budget_info,budget_class,budget_price,budget_num);
-            applyService.updateBudget(budgetBean);
-        }
-        return "success";
-    }
-    @RequestMapping(value = "/update",method = RequestMethod.PUT)
+    @RequestMapping(value = "/update",method = RequestMethod.POST)
     @ResponseBody
     public String applyUpdate(HttpServletRequest request,HttpServletResponse response)throws IOException{
 
@@ -142,14 +149,15 @@ public class MyTripController {
         String trip_reason = request.getParameter("trip_reason");
         String trip_phonecall = request.getParameter("user_phonecall");
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-        IDworker iDworker = new IDworker(1);
-        String  apply_id = Long.toString(iDworker.nextId());
+        String apply_id = request.getParameter("apply_id");
+        String apply_state  = applyService.getApplyStateByApplyId(apply_id);
         UserClient user = userService.selectUserByAccount(user_name);
+
         time_begin = Date.valueOf(trip_time_begin);
         time_end = Date.valueOf(trip_time_end);
         Apply apply = new Apply(apply_id,user.getUser_id(),user_apply_time,user_name,user_department,trip_destination,
-                time_begin,time_end,trip_reason,trip_phonecall);
-        long res = applyService.updateApplyInfo(apply);
+                time_begin,time_end,trip_reason,trip_phonecall,apply_state);
+        int res = applyService.updateApplyInfo(apply);
         if(res == 1){
             return apply_id;
         }else{
