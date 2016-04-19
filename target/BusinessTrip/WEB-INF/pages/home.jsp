@@ -13,13 +13,14 @@
     <link rel="stylesheet" href="<c:url value="/resources/style/bootstrap.min.css"/>" type="text/css">
     <link rel="stylesheet" href="<c:url value="/resources/style/common.css"/>" type="text/css">
 </head>
-<body>
+<body onload="diff_position('${user.user_role}');" >
     <div class="header ">
         <ul class="header_left ">
             <li><a href="">我的差旅</a></li>
             <a href=""> <li>差旅申请</li></a>
             <a href=""><li>报销</li></a>
-            <a href=""><li>统计</li></a> 
+            <a class="tong_ji" href=""><li>统计</li></a>
+
             <input type="text" id="mytrip_search" placeholder="查询我的差旅记录" name="query_mytrip">   
         </ul>
           
@@ -80,14 +81,22 @@
                     <span class="left_sidebar_title">积分商城</span>
                 </span>
             </a>
+
         </div>
         <div class="right_content">
-            
+
         </div>
     </div>
   
   <script src="<c:url value="/resources/js/jquery-2.2.2.js"/>"></script>
  <script src="<c:url value="/resources/js/header_bar.js"/>"></script>
- 
+    <script>
+        function diff_position(position){
+            if(position == "manager"){
+
+                $(".tong_ji:eq(0)").after("<a href='<%=request.getContextPath()%>/review'><li>差旅审批</li></a>");
+            }
+        }
+    </script>
 </body>
 </html>

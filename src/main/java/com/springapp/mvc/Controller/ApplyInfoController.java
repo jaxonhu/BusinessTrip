@@ -29,6 +29,7 @@ public class ApplyInfoController {
 
         apply.budget_money = applyService.getApplyBudgetMoney(apply_id);
         apply.apply_state = applyService.getApplyStateByApplyId(apply_id);
+        apply.apply_res = applyService.getApplyRes(apply_id);
         mv.addObject("apply",apply);
         mv.addObject("budgets",budgetBeans);
         mv.setViewName("applyInfo");

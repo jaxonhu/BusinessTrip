@@ -10,7 +10,7 @@
     display: inline-block;
     position: relative;
     width: 500px;
-    height: 500px;
+    height: 480px;
     padding: 60px 20px 30px 30px;
     list-style: none;
     
@@ -35,7 +35,7 @@
     display: block;
     float: right;
     width: 560px;
-    height: 670px;
+    height: 620px;
     background: #fff;
 }
 .trip_info_table{
@@ -82,6 +82,6 @@
 .trip_apply{
     display: block;
     position: relative;
-    top: 0px;
+    top: -20px;
     margin-left:40%;
 }

@@ -4,10 +4,37 @@ package com.springapp.mvc.Model;
  * Created by hujiaxuan on 2016/3/31.
  */
 public class UserClient {
-    private String user_id;
-    private String user_account;
-    private String user_password;
-    private String user_email;
+    public String user_id;
+    public String user_account;
+    public String user_password;
+    public String user_email;
+    public String user_department;
+    public String user_role;
+    public int user_score;
+
+    public String getUser_department() {
+        return user_department;
+    }
+
+    public void setUser_department(String user_department) {
+        this.user_department = user_department;
+    }
+
+    public String getUser_role() {
+        return user_role;
+    }
+
+    public void setUser_role(String user_role) {
+        this.user_role = user_role;
+    }
+
+    public int getUser_score() {
+        return user_score;
+    }
+
+    public void setUser_score(int user_score) {
+        this.user_score = user_score;
+    }
 
     public String getUser_id() {
         return user_id;

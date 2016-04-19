@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="<c:url value="/resources/style/bootstrap.min.css"/>" type="text/css">
     <link rel="stylesheet" href="<c:url value="/resources/style/applyInfo.css"/>" type="text/css"/>
 </head>
-<body>
+<body onload="checkBoxInit('${apply.apply_res}');">
 <div class="header ">
     <ul class="header_left ">
         <li><a href="">我的差旅</a></li>
@@ -112,14 +112,14 @@
                     <th colspan="1">事由</th>
                     <th colspan="7">${apply.trip_reason}</th>
                 </tr>
-                <tr>
-                    <th colspan="1">交通工具</th>
-                    <th colspan="7"><input type="checkbox" checked>汽车
-                   <input type="checkbox" checked/>火车
-                    <input type="checkbox" checked/>飞机
-                    <input type="checkbox" checked/>轮船
-                    <input type="checkbox" checked/>私家车</th>
-                </tr>
+                <%--<tr>--%>
+                    <%--<th colspan="1">交通工具</th>--%>
+                    <%--<th colspan="7"><input type="checkbox" checked>汽车--%>
+                   <%--<input type="checkbox" checked/>火车--%>
+                    <%--<input type="checkbox" checked/>飞机--%>
+                    <%--<input type="checkbox" checked/>轮船--%>
+                    <%--<input type="checkbox" checked/>私家车</th>--%>
+                <%--</tr>--%>
                 <tr>
                     <th colspan="8">预算申请</th>
                 </tr>
@@ -142,9 +142,9 @@
                 <tr>
                     <th colspan="1">差旅达成情况</th>
                     <th colspan="7">
-                        <input type="checkbox" disabled checked/>达成
-                        <input type="checkbox" checked/>基本达成
-                        <input type="checkbox" checked/>未达成
+                        <input class="input_check" type="checkbox" disabled />达成
+                        <input class="input_check" type="checkbox" disabled/>基本达成
+                        <input class="input_check" type="checkbox" disabled />未达成
                     </th>
                 </tr>
                 <tr>
@@ -173,7 +173,17 @@
 <script src="<c:url value="/resources/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 <script>
+    $(function(){
 
+    });
+    function checkBoxInit(data){
+        switch(data){
+            case "达成": $(".input_check:eq(0)").attr("checked",true);break;
+            case "基本达成": $(".input_check:eq(1)").attr("checked",true);break;
+            case "未达成": $(".input_check:eq(2)").attr("checked",true);break;
+            default : break;
+        }
+    }
 </script>
 </body>
 </html>

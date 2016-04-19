@@ -24,6 +24,7 @@ public class HomeController {
         ModelAndView mv = new ModelAndView();
         HttpSession httpSession = request.getSession();
         String user_id = (String)httpSession.getAttribute("user_id");
+
         if(user_id==null||user_id.isEmpty()){
             mv.setViewName("login");
         }else{

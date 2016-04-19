@@ -91,4 +91,9 @@ public class ApplyServiceImpl implements ApplyService {
     public String getApplyStateByApplyId(String id) {
         return applyDao.getApplyStateByApplyId(id);
     }
+
+    @Override
+    public String getApplyRes(String apply_id) {
+        return applyDao.getApplyRes(apply_id);
+    }
 }

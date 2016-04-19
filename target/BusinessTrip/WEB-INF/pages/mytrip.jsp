@@ -117,10 +117,10 @@
     </div>
 </div>
 
-<script src="../js/jquery-2.2.2.js"></script>
-<script src="../js/header_bar.js"></script>
-<script src="../js/jquery-ui.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="<c:url value="/resources/js/jquery-2.2.2.js"/> "></script>
+<script src="<c:url value="/resources/js/header_bar.js"/>"></script>
+<script src="<c:url value="/resources/js/jquery-ui.min.js"/>"></script>
+<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script>
 

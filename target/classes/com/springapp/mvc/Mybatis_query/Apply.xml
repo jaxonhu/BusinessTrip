@@ -58,4 +58,7 @@
        <select id="getApplyStateByApplyId" parameterType="String" resultType="String">
               select apply_state from apply where apply_id=#{apply_id}
        </select>
+       <select id="getApplyRes" parameterType="String" resultType="String">
+              select apply_res from apply where apply_id=#{apply_Id}
+       </select>
 </mapper>

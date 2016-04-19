@@ -23,4 +23,5 @@ public interface ApplyDao {
     public int updateApplyMoney(java.lang.Float money,String apply_id);
     public float getApplyMoney(String apply_id);
     public String getApplyStateByApplyId(String apply_id);
+    public String getApplyRes(String apply_id);
 }

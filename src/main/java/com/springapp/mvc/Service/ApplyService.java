@@ -23,4 +23,5 @@ public interface ApplyService {
         public int caculateApplyBudget(List<Budget> list);
         public float getApplyBudgetMoney(String apply_id);
         public String getApplyStateByApplyId(String id);
+        public String getApplyRes(String apply_id);
 }
