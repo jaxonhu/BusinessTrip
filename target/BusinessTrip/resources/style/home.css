@@ -17,7 +17,8 @@ body {
   top: 0px;
   height: 100%;
   display: block;
-  background: #fff; }
+  background: #fff;
+  overflow:auto;}
 
 .left_sidebar {
   width: 130px;

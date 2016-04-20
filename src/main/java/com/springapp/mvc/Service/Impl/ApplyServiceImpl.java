@@ -96,4 +96,10 @@ public class ApplyServiceImpl implements ApplyService {
     public String getApplyRes(String apply_id) {
         return applyDao.getApplyRes(apply_id);
     }
+
+    @Override
+    public List<ApplyShort> selectAllApplyShortByUserDepartment(String department) {
+
+        return applyDao.selectAllApplyShortByDepartment(department);
+    }
 }

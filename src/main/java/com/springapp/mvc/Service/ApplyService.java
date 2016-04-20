@@ -24,4 +24,5 @@ public interface ApplyService {
         public float getApplyBudgetMoney(String apply_id);
         public String getApplyStateByApplyId(String id);
         public String getApplyRes(String apply_id);
+        public List<ApplyShort> selectAllApplyShortByUserDepartment(String department);
 }

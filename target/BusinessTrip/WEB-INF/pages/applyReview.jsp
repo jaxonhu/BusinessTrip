@@ -16,13 +16,13 @@
     <link rel="stylesheet" href="<c:url value="/resources/style/mytrip.css"/>" type="text/css"/>
     <link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css">
 </head>
-<body>
+    <body onload="diff_position('${user.user_role}');">
 <div class="header ">
     <ul class="header_left ">
         <li><a href="">我的差旅</a></li>
         <a href=""> <li>差旅申请</li></a>
         <a href=""><li>报销</li></a>
-        <a href=""><li>统计</li></a>
+        <a href="" class="tong_ji"><li>统计</li></a>
         <input type="text" id="mytrip_search" placeholder="查询我的差旅记录" name="query_mytrip">
     </ul>
 
@@ -32,7 +32,7 @@
             <a href="">
                 <img src="<c:url value="/resources/image/profile-full-male.png"/>" class="radius3 clearFix" alt="新建差旅">
 
-                <p class="clearFix">胡家煊</p>
+                <p class="clearFix">${user.user_account}</p>
                 <span class="header_drop"></span>
             </a>
         </div>
@@ -99,14 +99,16 @@
                         </tr>
                     </thread>
                     <tbody>
+                    <c:forEach items="${applyShorts}" var="list" varStatus="vs">
                         <tr>
-                            <th>1</th>
-                            <th><a href="#">232342342</a></th>
-                            <th>胡家煊</th>
-                            <th>去北京准备面试</th>
-                            <th>待定</th>
-                            <th class="th_align_center"><a href="javascript:void(0);" class="table_button"><i class="fa fa-pencil">审批</i></a></th>
+                            <th>${vs.index}</th>
+                            <th><a href="javascript:void(0);" onclick="">${list.apply_id}</a></th>
+                            <th>${list.apply_user}</th>
+                            <th>${list.trip_reason}</th>
+                            <th>${list.apply_state}</th>
+                            <th class="th_align_center"><a href="javascript:void(0);" onclick="applyReview('${list.apply_id}');" class="table_button"><i class="fa fa-pencil">审批</i></a></th>
                         </tr>
+                    </c:forEach>
                     </tbody>
                 </table>
             </div>
@@ -120,8 +122,15 @@
 <script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 <script>
+    function diff_position(position){
+        if(position == "manager"){
 
-
+            $(".tong_ji:eq(0)").after("<a href='<%=request.getContextPath()%>/review'><li>差旅审批</li></a>");
+        }
+    }
+    function applyReview(data){
+        window.location.href="/BusinessTrip/review/"+data;
+    }
 </script>
 </body>
 </html>

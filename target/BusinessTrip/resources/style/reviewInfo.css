@@ -1,0 +1,28 @@
+
+#review_not_through{
+    margin-left: 50px;
+}
+.review_input{
+    margin: 10px 20px 20px 20px;
+    padding-left: 30%;
+}
+#review_comment{
+    width: 100%;
+
+}
+.review_commit{
+    text-align: center;
+    padding: 20px 10px 20px 10px;
+}
+.review_commit > a{
+    display: inline-block;
+    width: 100px;
+    height:30px;
+    padding-top: 10px;
+    border-radius: 5px;
+    background-color: #0072b5;
+    color: #fff;
+}
+#commit{
+    margin-right: 20px;
+}

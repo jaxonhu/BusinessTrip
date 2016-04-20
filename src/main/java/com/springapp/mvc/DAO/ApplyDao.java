@@ -24,4 +24,5 @@ public interface ApplyDao {
     public float getApplyMoney(String apply_id);
     public String getApplyStateByApplyId(String apply_id);
     public String getApplyRes(String apply_id);
+    public List<ApplyShort> selectAllApplyShortByDepartment(String department);
 }

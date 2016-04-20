@@ -61,4 +61,7 @@
        <select id="getApplyRes" parameterType="String" resultType="String">
               select apply_res from apply where apply_id=#{apply_Id}
        </select>
+       <select id="selectAllApplyShortByDepartment" parameterType="String" resultMap="applyShort">
+              select apply_id,user_account,trip_reason,apply_state from apply where user_department=#{department}
+       </select>
 </mapper>
