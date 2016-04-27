@@ -3,6 +3,7 @@ package com.springapp.mvc.DAO;
 import com.springapp.mvc.Model.Apply;
 import com.springapp.mvc.Model.ApplyShort;
 import com.springapp.mvc.Model.BudgetBean;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,4 +26,5 @@ public interface ApplyDao {
     public String getApplyStateByApplyId(String apply_id);
     public String getApplyRes(String apply_id);
     public List<ApplyShort> selectAllApplyShortByDepartment(String department);
+    public int updateApplyState(@Param(value = "apply_state")String applyState,@Param(value = "apply_id")String apply_id);
 }

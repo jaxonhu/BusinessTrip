@@ -225,7 +225,8 @@
             url:"/BusinessTrip/review/commit/"+${apply.apply_id},
             data:data,
             success: function(){
-
+                alert("审核通过");
+//                window.location.href="/BusinessTrip/review";
             },
             error:function(XMLHttpRequest, textStatus, errorThrown) {
                 alert(XMLHttpRequest.status);

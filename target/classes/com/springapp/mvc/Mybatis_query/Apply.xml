@@ -62,6 +62,9 @@
               select apply_res from apply where apply_id=#{apply_Id}
        </select>
        <select id="selectAllApplyShortByDepartment" parameterType="String" resultMap="applyShort">
-              select apply_id,user_account,trip_reason,apply_state from apply where user_department=#{department}
+              select apply_id,user_account,trip_reason,apply_state from apply where user_department=#{department} and apply_state="待审核"
        </select>
+       <update id="updateApplyState" parameterType="String" >
+              update apply set apply_state=#{apply_state} where apply_id=#{apply_id}
+       </update>
 </mapper>

@@ -25,4 +25,5 @@ public interface ApplyService {
         public String getApplyStateByApplyId(String id);
         public String getApplyRes(String apply_id);
         public List<ApplyShort> selectAllApplyShortByUserDepartment(String department);
+        public int updateApplyState(String applyState,String apply_id);
 }

@@ -102,4 +102,9 @@ public class ApplyServiceImpl implements ApplyService {
 
         return applyDao.selectAllApplyShortByDepartment(department);
     }
+
+    @Override
+    public int updateApplyState(String applyState,String apply_id) {
+        return applyDao.updateApplyState(applyState,apply_id);
+    }
 }

@@ -1,11 +1,10 @@
 package com.springapp.mvc.Controller;
 
-import com.springapp.mvc.Model.Apply;
-import com.springapp.mvc.Model.ApplyShort;
-import com.springapp.mvc.Model.BudgetBean;
-import com.springapp.mvc.Model.UserClient;
+import com.springapp.mvc.Model.*;
 import com.springapp.mvc.Service.ApplyService;
+import com.springapp.mvc.Service.ReviewService;
 import com.springapp.mvc.Service.UserClientService;
+import com.springapp.mvc.Utils.DateTransform;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.Date;
 import java.util.List;
 
 /**
@@ -31,6 +31,8 @@ public class ReviewController {
     private UserClientService userService;
     @Resource
     private ApplyService applyService;
+    @Resource
+    private ReviewService reviewService;
     @RequestMapping
     public ModelAndView index(HttpServletRequest request,HttpServletResponse response)throws IOException{
         ModelAndView mv = new ModelAndView();
@@ -42,7 +44,6 @@ public class ReviewController {
             mv.addObject("user",uc);
             mv.addObject("applyShorts",applyShorts);
         }
-
         mv.setViewName("applyReview");
         return mv;
     }
@@ -65,11 +66,21 @@ public class ReviewController {
     }
     @RequestMapping(value = "/commit/{apply_id}",method = RequestMethod.POST)
     public @ResponseBody String makeReview(@PathVariable("apply_id")String apply_id,HttpServletRequest request,HttpServletResponse response)throws IOException{
-
+        UserClient uc;
+        DateTransform dateTransform = new DateTransform();
         String review_comment = request.getParameter("review_comment");
         String review = request.getParameter("review");
-        String review_date = request.getParameter("review_date");
-
-        return "success";
+        String review_date = dateTransform.date_transform_(request.getParameter("review_date"));
+        HttpSession session = request.getSession();
+        String user_id = (String)session.getAttribute("user_id");
+        Date reviewDate =Date.valueOf(review_date);
+        if(!user_id.equals("")){
+             uc  = userService.selectUserById(user_id);
+            Review review1  = new Review(apply_id,uc.user_account,review_comment,reviewDate,"审批");
+            int res = reviewService.makeReview(review1);
+            int res1 = applyService.updateApplyState(review,apply_id);
+            return "success";
+        }
+        return "error";
     }
 }

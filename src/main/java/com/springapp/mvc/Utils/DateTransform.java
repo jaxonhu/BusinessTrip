@@ -25,4 +25,13 @@ public class DateTransform {
         }
         return "";
     }
+    public String date_transform_(String pre_date){
+
+        if(pre_date.indexOf("/")>0){
+            String[] dateString = pre_date.split("/");
+            String res = dateString[0]+"-"+dateString[1]+"-"+dateString[2];
+            return res;
+        }
+        return "";
+    }
 }

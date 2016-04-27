@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springapp.mvc.DAO.WeiboDao">
+        <resultMap id="weibolist" type="Weibo">
+            <result column="weibo_id" property="weibo_id"/>
+            <result column="weibo_content" property="weibo_content"/>
+            <result column="user_account" property="user_account"/>
+            <result column="weibo_date" property="weibo_date"/>
+            <result column="thumb_on" property="thumb_on"/>
+            <result column="user_department" property="user_department"/>
+            <result column="user_face_url" property="user_face_url"/>
+        </resultMap>
+        <resultMap id="commentsList" type="Comment">
+            <result column="comment_id" property="comment_id"/>
+            <result column="weibo_id" property="weibo_id"/>
+            <result column="comment" property="comment"/>
+            <result column="user_account" property="user_account"/>
+            <result column="comment_date" property="comment_date"/>
+            <result column="user_face_url" property="user_face_url"/>
+        </resultMap>
+       <insert id="weiboPublish" parameterType="Weibo" >
+              insert into weibo(weibo_id,weibo_content,user_account,weibo_date,thumb_on,user_department,user_face_url)
+              values(#{weibo_id},#{weibo_content},#{user_account},#{weibo_date},#{thumb_on},#{user_department},#{user_face_url})
+       </insert>
+        <select id="selectAllWeiboByDepartment" parameterType="String" resultMap="weibolist">
+              select  weibo_id,weibo_content,user_account,weibo_date,thumb_on,user_department,user_face_url FROM
+              weibo where user_department=#{department}
+        </select>
+        <update id="weiboThumbOn" parameterType="Map">
+            update weibo set thumb_on=#{num} where weibo_id=#{weibo_id}
+        </update>
+        <select id="selectWeiboById" parameterType="String" resultType="Weibo">
+            select * from weibo where weibo_id=#{weibo_id}
+        </select>
+        <select id="selectAllCommentByWeiboId" parameterType="String" resultMap="commentsList">
+          select * from comments where weibo_id=#{weibo_id}
+        </select>
+        <insert id="insertComment" parameterType="Comment">
+            insert into comments(comments_id,weibo_id,comment,user_account,comment_date,user_face_url)
+            values(#{comment_id},#{weibo_id},#{comment},#{user_account},#{comment_date},#{user_face_url})
+        </insert>
+</mapper>

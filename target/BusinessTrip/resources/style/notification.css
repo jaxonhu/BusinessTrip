@@ -1,0 +1,128 @@
+.content_left{
+    margin-right: 550px;
+    height: 100%;
+    position: relative;
+    overflow-y: auto;
+
+}
+.content_left::-webkit-scrollbar-thumb{
+    border-width: 2px;
+    border-style: solid;
+    border-color: #fff;
+    border-radius: 6px;
+    background-color: #c6c6c6;
+}
+.content_left::-webkit-scrollbar{
+    width: 12px;
+    height: 12px;
+}
+.content_left_top{
+    padding:15px 0px 15px 0px;
+    font-size: 15px;
+    position: relative;
+    color: #333;
+}
+.content_left_top>b{
+    position: relative;
+    left: 20px;
+}
+.noti_op{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    height: 25px;
+    width: 300px;
+}
+.noti_op_list{
+    position: relative;
+    display: block;
+    list-style: none;
+    width: 400px;
+}
+.noti_op_list>li{
+    width: 50px;
+    height: 30px;
+    display: inline-block;
+    box-shadow: 0px 1px 1px 0px #eee;
+    background-color: #fcfcfc;
+    padding: 0px 10px;
+    text-align: center;
+    cursor: pointer;
+    color: #333;
+    /*text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);*/
+    border: 1px solid #DaDaDa;
+    font-size: 13px;
+    margin-right: -5px;
+}
+.noti_op_list>li>a{
+
+    text-decoration: none;
+    color: #000;
+    line-height: 25px;
+    height: 100%;
+    width: 100%;
+    background-color: #fcfcfc;
+}
+.list_item_visited{
+    background: #efefef !important;
+     box-shadow: inset 0px 1px 4px rgba(0,0,0,.1);
+}
+.list_item_visited>a{
+    background-color:#efefef !important;
+}
+.noti_list{
+    margin: 20px 0px 20px 0px;
+    overflow-y: auto;
+}
+.noti_item{
+    padding: 10px 0px;
+    padding-left: 10px;
+    cursor: default;
+    font-weight: bold;
+    color: #555;
+    position: relative;
+    border-left: 6px solid transparent;
+    margin: 6px 0px 10px 0px;
+
+}
+.noti_item:hover {
+    background-color: #fafafa;
+}
+.noti_item > img{
+    border-radius: 50%;
+    width: 60px !important;
+    height: 60px !important;
+    position: relative;
+    float: left;
+    border: 1px solid #efefef;
+}
+.noti_content{
+    float: right;
+    width: 80%;
+}
+.noti_name{
+    display: inline-block;
+    float: left;
+    color: #888;
+    font-weight: bold;
+    font-size: 15px;
+}
+.noti_date{
+    display: inline-block;
+    float: right;
+    font-size: 13px;
+    color:#999 ;
+    right: 20px;
+    position: relative;
+}
+.noti_content>p{
+    margin: 20px 0px 10px 0px;
+    width: 100%;
+    float: left;
+    color: #999!important;
+    font-weight: lighter;
+}
+.selected{
+    background: #f4f4f4;
+    border-left: 6px solid rgba(39, 174, 91, .6);
+}
