@@ -101,7 +101,7 @@
                             <p>${list.weibo_content}</p>
                             <div class="dp_btns">
                                 <a href="javascript:void(0);" class="thumb_on" onclick="give_thumbon('${list.weibo_id}',${list.thumb_on});"><i class="fa fa-thumbs-o-up"></i> ${list.thumb_on}</a>
-                                <a href="javascript:void(0);" onclick="showComments(0,'${list.weibo_id}');" class="comments_publish"><i class="fa fa-edit"></i> 评论</a>
+                                <a href="javascript:void(0);" onclick="showComments(${vs.index},'${list.weibo_id}');" class="comments_publish"><i class="fa fa-edit"></i> 评论</a>
                             </div>
 
                         </div>
@@ -119,7 +119,26 @@
                 </div>
             </div>
             <div class="content_right">
+                <p>软件学院</p>
+                <div class="member_manager clearFix">
+                    <p>部门经理：</p>
 
+                    <c:forEach items="${managers}" var="list" varStatus="vs">
+                        <div class="member_item">
+                            <img src="<c:url value="${list.user_face_url}"/>" alt=""/>
+                            <a href="">${list.user_account}</a>
+                        </div>
+                    </c:forEach>
+                </div>
+                <div class="member_employee clearFix">
+                    <p>部门成员：</p>
+                    <c:forEach items="${employees}" var="list" varStatus="vs">
+                        <div class="member_item">
+                            <img src="<c:url value="${list.user_face_url}"/>" alt=""/>
+                            <a href="">${list.user_account}</a>
+                        </div>
+                    </c:forEach>
+                </div>
             </div>
         </div>
     </div>

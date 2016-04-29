@@ -16,7 +16,7 @@
     
 }
 .ul_tripinfo1 li{
-    width: 450px;
+    width: 420px;
     margin-bottom: 35px;
 }
 .info_input{
@@ -34,9 +34,10 @@
 .trip_info_right{
     display: block;
     float: right;
-    width: 560px;
+    width: 520px;
     height: 620px;
     background: #fff;
+    margin-top: 30px;
 }
 .trip_info_table{
     position: absolute;

@@ -33,16 +33,27 @@ public class LoginController {
 		String user_password = request.getParameter("user_password");
 		UserClient user = userService.selectUserByAccount(user_account);
 
-		if(user!=null){
-			HttpSession httpSession = request.getSession();
-			httpSession.setAttribute("user_id",user.getUser_id());
 
-			String sessionId = httpSession.getId();
-			if(httpSession.isNew()){
-				System.out.println("session创建成功"+sessionId);
+
+		if(user!=null){
+
+			if(!user_password.equals(user.user_password)){
+
+				return "error";
+
 			}else{
-				System.out.println("session已经存在"+sessionId);
+				HttpSession httpSession = request.getSession();
+				httpSession.setAttribute("user_id",user.getUser_id());
+
+				String sessionId = httpSession.getId();
+				if(httpSession.isNew()){
+					System.out.println("session创建成功"+sessionId);
+				}else{
+					System.out.println("session已经存在"+sessionId);
+				}
+
 			}
+
 
 			return "success";
 		}else{

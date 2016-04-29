@@ -34,9 +34,12 @@ public class HomeController {
             mv.setViewName("login");
         }else{
             UserClient user = service.selectUserById(user_id);
-
+            List<UserClient> managers =service.selectManager(user.user_department);
+            List<UserClient> employees= service.selectEmployee(user.user_department);
             List<Weibo> records = weiboService.selectAllWeiboByDepartment(user.user_department);
             mv.addObject("weibo_list",records);
+            mv.addObject("managers",managers);
+            mv.addObject("employees",employees);
             mv.addObject("user",user);
             mv.setViewName("home");
         }

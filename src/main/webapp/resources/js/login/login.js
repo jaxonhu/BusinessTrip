@@ -2,6 +2,7 @@ window.onload = init();
 function init(){
     console.log("hello world");
 }
+
 function login_query(){
 
     var user_account = $("#login_account").val();
@@ -10,6 +11,10 @@ function login_query(){
         user_account :user_account,
         user_password:user_password
     };
+    if(user_account==""||user_password==""){
+        alert("用户名或密码不能为空");
+        return ;
+    }
     console.log("/BusinessTrip/login/" + user_account);
     $.ajax({
         type:"POST",

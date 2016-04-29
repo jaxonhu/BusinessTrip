@@ -6,6 +6,7 @@ import com.springapp.mvc.Service.UserClientService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by hujiaxuan on 2016/4/1.
@@ -35,5 +36,15 @@ public class UserServiceImpl implements UserClientService {
     public String selectUserIdByAccount(String user_account) {
 
         return null;
+    }
+
+    @Override
+    public List<UserClient> selectManager(String department) {
+        return userDao.selectManager(department);
+    }
+
+    @Override
+    public List<UserClient> selectEmployee(String department) {
+        return userDao.selectEmployee(department);
     }
 }

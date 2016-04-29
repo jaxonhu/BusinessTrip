@@ -28,7 +28,7 @@
             <a href="">
                 <img src="<c:url value="/resources/image/profile-full-male.png"/>" class="radius3 clearFix" alt="新建差旅">
 
-                <p class="clearFix">胡家煊</p>
+                <p class="clearFix">${user.user_account}</p>
                 <span class="header_drop"></span>
             </a>
         </div>
@@ -55,10 +55,10 @@
 
         <img src="<c:url value="/resources/image/profile-full-male.png"/>" alt=""/>
         <div class="profile_header_content">
-            <h2 class="profile_name">胡家煊</h2>
+            <h2 class="profile_name">${user.user_account}</h2>
             <div class="profile_description">啊哈哈哈哈哈哈哈哈哈哈哈哈</div>
-            <div class="profile_department">软件学院</div>
-            <div class="profile_contact">370403444@qq.com</div>
+            <div class="profile_department">${user.user_department}</div>
+            <div class="profile_contact">${user.user_email}</div>
             <a class="profile_edit" href="javascript:void(0);">编辑您的个人信息</a>
         </div>
     </div>
@@ -68,90 +68,29 @@
 
 
     <div class="profile_dp_list">
-        <div class="profile_dp_item">
-            <img src="<c:url value="/resources/image/profile-full-male.png"/>" alt=""/>
-            <div class="dp_content clearFix">
-                <a href="javascript:void(0);">胡家煊</a>
-                <span>2016-04-24</span>
-                <p>。。。。。。。。。。。。。。。。。。。。</p>
-                <div class="dp_btns">
-                    <a href="javascript:void(0);" class="thumb_on"><i class="fa fa-thumbs-o-up"></i> 2</a>
-                    <a href="javascript:void(0);" onclick="showComments(0);" class="comments_publish"><i class="fa fa-edit"></i> 评论</a>
-                </div>
+        <c:forEach items="${weibo_list}" var="list" varStatus="vs">
+            <div class="profile_dp_item" id="${list.weibo_id}">
+                <img src="<c:url value="${list.user_face_url}"/>" alt=""/>
+                <div class="dp_content clearFix">
+                    <a href="javascript:void(0);">${list.user_account}</a>
+                    <span>${list.weibo_date}</span>
+                    <p>${list.weibo_content}</p>
+                    <div class="dp_btns">
+                        <a href="javascript:void(0);"  class="thumb_on" onclick="give_thumbon('${list.weibo_id}',${list.thumb_on});"><i class="fa fa-thumbs-o-up"></i> ${list.thumb_on}</a>
+                        <a href="javascript:void(0);" onclick="showComments(${vs.index},'${list.weibo_id}');" class="comments_publish"><i class="fa fa-edit"></i> 评论</a>
+                    </div>
 
-            </div>
-            <div class="dp_comments">
-                <div class="comments_input" contenteditable="true" spellcheck="false" accesskey="q" >
                 </div>
-                <input type="button" value="提交评论" class="comment_post"/>
-                <div class="comments_list">
-                    <div class="comments_item">
-                        <img src="<c:url value="/resources/image/profile-full-male.png"/>" alt=""/>
-                        <div class="comments_item_content">
-                            <a class="comment_author" href="javascript:void(0);">胡家煊:</a>
-                            <p class="comment_content">aaaaaaaaaaa</p>
-                            <span class="comment_date">2016-04-24</span>
-                        </div>
+                <div class="dp_comments">
+                    <div class="comments_input" contenteditable="true" spellcheck="false" accesskey="q" >
+                    </div>
+                    <input type="button" onclick="putComment('${list.weibo_id}',${vs.index})" value="提交评论" class="comment_post"/>
+                    <div class="comments_list">
+
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="profile_dp_item">
-            <img src="<c:url value="/resources/image/profile-full-male.png"/>" alt=""/>
-            <div class="dp_content clearFix">
-                <a href="javascript:void(0);">胡家煊</a>
-                <span>2016-04-24</span>
-                <p>。。。。。。。。。。。。。。。。。。。。</p>
-                <div class="dp_btns">
-                    <a href="javascript:void(0);" class="thumb_on"><i class="fa fa-thumbs-o-up"></i> 2</a>
-                    <a href="javascript:void(0);" onclick="showComments(1);" class="comments_publish"><i class="fa fa-edit"></i> 评论</a>
-                </div>
-
-            </div>
-            <div class="dp_comments">
-                <div class="comments_input" contenteditable="true" spellcheck="false" accesskey="q" >
-                </div>
-                <input type="button" value="提交评论" class="comment_post"/>
-                <div class="comments_list">
-                    <div class="comments_item">
-                        <img src="<c:url value="/resources/image/profile-full-male.png"/>" alt=""/>
-                        <div class="comments_item_content">
-                            <a class="comment_author" href="javascript:void(0);">胡家煊:</a>
-                            <p class="comment_content">aaaaaaaaaaa</p>
-                            <span class="comment_date">2016-04-24</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="profile_dp_item">
-            <img src="<c:url value="/resources/image/profile-full-male.png"/>" alt=""/>
-            <div class="dp_content clearFix">
-                <a href="javascript:void(0);">胡家煊</a>
-                <span>2016-04-24</span>
-                <p>。。。。。。。。。。。。。。。。。。。。</p>
-                <div class="dp_btns">
-                    <a href="javascript:void(0);" class="thumb_on"><i class="fa fa-thumbs-o-up"></i> 2</a>
-                    <a href="javascript:void(0);" onclick="showComments(2);" class="comments_publish"><i class="fa fa-edit"></i> 评论</a>
-                </div>
-
-            </div>
-            <div class="dp_comments">
-                <div class="comments_input" contenteditable="true" spellcheck="false" accesskey="q" >
-                </div>
-                <input type="button" value="提交评论" class="comment_post"/>
-                <div class="comments_list">
-                    <div class="comments_item">
-                        <img src="<c:url value="/resources/image/profile-full-male.png"/>" alt=""/>
-                        <div class="comments_item_content">
-                            <a class="comment_author" href="javascript:void(0);">胡家煊:</a>
-                            <p class="comment_content">aaaaaaaaaaa</p>
-                            <span class="comment_date">2016-04-24</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </c:forEach>
     </div>
 
 
@@ -161,7 +100,15 @@
 <script src="<c:url value="/resources/js/jquery-2.2.2.js"/> "></script>
 <script src="<c:url value="/resources/js/header_bar.js"/> "></script>
 <script>
-    
+    $(function(){
+        var divs = $(".profile_dp_item");
+
+        for(var i = 0;i<divs.length;i++){
+            var obj = $(".profile_dp_item:eq("+i+")");
+            var weibo_id = obj.prop("id");
+            loadComments(i,weibo_id);
+        }
+    });
     function showComments(index){
 //        var obj = document.getElementsByClassName("dp_comments")[index];
 //        alert($(".dp_comments:eq(0)").prop("display"));
@@ -174,8 +121,36 @@
 
             obj.css("display","block");
         }
+    }
+    function loadComments(index1,weiboId){
+        $.ajax({
+            type:"POST",
+            url:"/BusinessTrip/weibo/comments",
+            data:{
+                weibo_id:weiboId
+            },
+            dataType:"json",
+            success:function(data){
+                if(data){
+                    $.each(data,function(index){
+                        var content="<div class=\"comments_item\">" +
+                                "<img src='/BusinessTrip/"+data[index].user_face_url+"' alt=''/> " +
+                                "<div class='comments_item_content'> " +
+                                "<a class='comment_author' href='javascript:void(0);'>"+data[index].user_account+":</a>" +
+                                "<p class='comment_content'>"+data[index].comment+"</p>" +
+                                "<span class='comment_date'>"+data[index].comment_date+"</span> " +
+                                "</div>" +
+                                "</div>";
+                        var obj = $(".comments_list:eq("+index1+")");
+                        obj.append(content);
 
-
+                    });
+                }
+            },
+            error:function(){
+                alert("ajax链接失败");
+            }
+        });
     }
 </script>
 </body>

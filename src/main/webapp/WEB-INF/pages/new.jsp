@@ -179,6 +179,11 @@
              user_phonecall: user_phonecall
          };
 
+         if(user_name==""||user_department==""||user_applyTime==""||trip_destination==""||trip_time_begin==""||trip_time_end==""||user_phonecall==""||trip_reason==""){
+             alert("差旅申请信息不能为空");
+             return ;
+         }
+
          for(var i = 0;i<n;i++){
              var budget_info = $(".budget_instruction:eq('"+i+"')>input").val();
 

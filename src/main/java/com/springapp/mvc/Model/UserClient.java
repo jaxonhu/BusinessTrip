@@ -11,6 +11,17 @@ public class UserClient {
     public String user_department;
     public String user_role;
     public int user_score;
+    public String user_face_url;
+
+    public String getUser_face_url() {
+        return user_face_url;
+    }
+
+    public void setUser_face_url(String user_face_url) {
+        this.user_face_url = user_face_url;
+    }
+
+
 
     public String getUser_department() {
         return user_department;

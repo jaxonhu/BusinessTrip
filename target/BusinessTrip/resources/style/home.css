@@ -288,3 +288,41 @@ body {
   position: relative;
   display: inline-block;
 }
+
+/**********************************************************/
+.content_right p{
+  font-size: 13px;
+  color: #2b2b2b;
+  margin: 10px 0px 10px 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #EDEDED;
+}
+.member_manager{
+  margin: 10px 0px 10px 10px;
+  border-bottom: 1px solid #EDEDED;
+}
+
+.member_employee{
+  margin: 10px 0px 10px 10px;
+  border-bottom: 1px solid #EDEDED;
+}
+.member_item{
+  display: inline;
+  width: 80px;
+  height: 100px;
+  float: left;
+  text-align: center;
+}
+.member_item>img{
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+
+}
+.member_item>a{
+  text-decoration: none;
+  font-size: 13px;
+  color: #4183C4;
+  display: block;
+
+}
