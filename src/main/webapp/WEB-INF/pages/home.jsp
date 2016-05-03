@@ -29,7 +29,7 @@
             <a href="" class="add_mytrip"></a>
             <div class="myprofile">
                 <a href="">
-                    <img src="<c:url value="/resources/image/profile-full-male.png"/>" class="radius3 clearFix" alt="新建差旅">
+                    <img src="${user.user_face_url}" class="radius3 clearFix" alt="新建差旅">
             
                <p class="clearFix">${user.user_account}</p>
                <span class="header_drop"></span>
@@ -94,7 +94,7 @@
                 <div class="profile_dp_list">
                     <c:forEach items="${weibo_list}" var="list" varStatus="vs">
                     <div class="profile_dp_item" id="${list.weibo_id}">
-                        <img src="<c:url value="${list.user_face_url}"/>" alt=""/>
+                        <img src="${list.user_face_url}" alt=""/>
                         <div class="dp_content clearFix">
                             <a href="javascript:void(0);">${list.user_account}</a>
                             <span>${list.weibo_date}</span>
@@ -125,8 +125,8 @@
 
                     <c:forEach items="${managers}" var="list" varStatus="vs">
                         <div class="member_item">
-                            <img src="<c:url value="${list.user_face_url}"/>" alt=""/>
-                            <a href="">${list.user_account}</a>
+                            <img src="${list.user_face_url}" alt=""/>
+                            <a href="/BusinessTrip/profile/${list.user_id}">${list.user_account}</a>
                         </div>
                     </c:forEach>
                 </div>
@@ -215,7 +215,7 @@
                     if(data){
                         $.each(data,function(index){
                             var content="<div class=\"comments_item\">" +
-                                    "<img src='/BusinessTrip/"+data[index].user_face_url+"' alt=''/> " +
+                                    "<img src='"+data[index].user_face_url+"' alt=''/> " +
                                     "<div class='comments_item_content'> " +
                                     "<a class='comment_author' href='javascript:void(0);'>"+data[index].user_account+":</a>" +
                                     "<p class='comment_content'>"+data[index].comment+"</p>" +

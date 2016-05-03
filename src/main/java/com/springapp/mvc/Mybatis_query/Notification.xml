@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springapp.mvc.DAO.NotificationDao">
+
+    <insert id="insertNotification" parameterType="Notification">
+        insert into notification(user_id,user_account,noti_date,msg,read_state,apply_id,from_who)
+        values(#{user_id},#{user_account},#{noti_date},#{msg},#{read_state},#{apply_id},from_who)
+    </insert>
+
+</mapper>

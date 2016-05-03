@@ -76,7 +76,7 @@ public class MyTripController {
                 time_begin,time_end,trip_reason,trip_phonecall,"待审批");
 
         long res = applyService.insertApplyInfo(apply);//返回成功时值为1
-
+        int res2 = applyService.sendApplyNotification(user,apply_id);
         if(res == 1){
             return apply_id;
         }else{

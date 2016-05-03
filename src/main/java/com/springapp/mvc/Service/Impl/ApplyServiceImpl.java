@@ -1,15 +1,15 @@
 package com.springapp.mvc.Service.Impl;
 
 import com.springapp.mvc.DAO.ApplyDao;
+import com.springapp.mvc.DAO.NotificationDao;
 import com.springapp.mvc.DAO.UserDao;
-import com.springapp.mvc.Model.Apply;
-import com.springapp.mvc.Model.ApplyShort;
-import com.springapp.mvc.Model.Budget;
-import com.springapp.mvc.Model.BudgetBean;
+import com.springapp.mvc.Model.*;
 import com.springapp.mvc.Service.ApplyService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -19,6 +19,8 @@ import java.util.List;
 public class ApplyServiceImpl implements ApplyService {
     @Resource
     public ApplyDao applyDao;
+    @Resource
+    public NotificationDao notificationDao;
     @Override
     public int insertApplyInfo(Apply apply) {
 
@@ -106,5 +108,18 @@ public class ApplyServiceImpl implements ApplyService {
     @Override
     public int updateApplyState(String applyState,String apply_id) {
         return applyDao.updateApplyState(applyState,apply_id);
+    }
+
+    @Override
+    public int sendApplyNotification(UserClient userClient, String apply_id) {
+
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        String date = df.format(new Date());
+        java.sql.Date date_ = java.sql.Date.valueOf(date);
+        Notification notification = new Notification(userClient.user_id,userClient.user_account,date_,"","unread",apply_id,"employee");
+
+        int res = notificationDao.insertNotification(notification);
+
+        return res;
     }
 }

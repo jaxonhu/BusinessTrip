@@ -12,13 +12,13 @@
     <link rel="stylesheet" href="<c:url value="/resources/style/profile.css"/> " type="text/css"/>
     <link rel="stylesheet" href="http://fortawesome.github.io/Font-Awesome/assets/font-awesome/css/font-awesome.css">
 </head>
-<body>
+<body  onload="diff_position('${user.user_role}');edit_disabled('${visitor}')">
 <div class="header ">
     <ul class="header_left ">
         <li><a href="">我的差旅</a></li>
         <a href=""> <li>差旅申请</li></a>
         <a href=""><li>报销</li></a>
-        <a href=""><li>统计</li></a>
+        <a href=""  class="tong_ji"><li>统计</li></a>
         <input type="text" id="mytrip_search" placeholder="查询我的差旅记录" name="query_mytrip">
     </ul>
 
@@ -26,7 +26,7 @@
         <a href="" class="add_mytrip"></a>
         <div class="myprofile">
             <a href="">
-                <img src="<c:url value="/resources/image/profile-full-male.png"/>" class="radius3 clearFix" alt="新建差旅">
+                <img src="${user.user_face_url}" class="radius3 clearFix" alt="新建差旅">
 
                 <p class="clearFix">${user.user_account}</p>
                 <span class="header_drop"></span>
@@ -53,13 +53,14 @@
     </div>
     <div class="profile_header">
 
-        <img src="<c:url value="/resources/image/profile-full-male.png"/>" alt=""/>
+        <img src="${user.user_face_url}" alt=""/>
         <div class="profile_header_content">
             <h2 class="profile_name">${user.user_account}</h2>
-            <div class="profile_description">啊哈哈哈哈哈哈哈哈哈哈哈哈</div>
+            <div class="profile_description">${profile.description}</div>
             <div class="profile_department">${user.user_department}</div>
             <div class="profile_contact">${user.user_email}</div>
-            <a class="profile_edit" href="javascript:void(0);">编辑您的个人信息</a>
+            <div class="profile_contact">${profile.phone}</div>
+            <a class="profile_edit" href="<%=request.getContextPath()%>/setting">编辑您的个人信息</a>
         </div>
     </div>
     <div class="profile_bar">
@@ -70,7 +71,7 @@
     <div class="profile_dp_list">
         <c:forEach items="${weibo_list}" var="list" varStatus="vs">
             <div class="profile_dp_item" id="${list.weibo_id}">
-                <img src="<c:url value="${list.user_face_url}"/>" alt=""/>
+                <img src="${user.user_face_url}" alt=""/>
                 <div class="dp_content clearFix">
                     <a href="javascript:void(0);">${list.user_account}</a>
                     <span>${list.weibo_date}</span>
@@ -109,6 +110,11 @@
             loadComments(i,weibo_id);
         }
     });
+    function edit_disabled(data){
+        if(data=="guest"){
+            $(".profile_edit:eq(0)").remove();
+        }
+    }
     function showComments(index){
 //        var obj = document.getElementsByClassName("dp_comments")[index];
 //        alert($(".dp_comments:eq(0)").prop("display"));
@@ -120,6 +126,12 @@
         }else{
 
             obj.css("display","block");
+        }
+    }
+    function diff_position(position){
+        if(position == "manager"){
+
+            $(".tong_ji:eq(0)").after("<a href='<%=request.getContextPath()%>/review'><li>差旅审批</li></a>");
         }
     }
     function loadComments(index1,weiboId){
@@ -134,7 +146,7 @@
                 if(data){
                     $.each(data,function(index){
                         var content="<div class=\"comments_item\">" +
-                                "<img src='/BusinessTrip/"+data[index].user_face_url+"' alt=''/> " +
+                                "<img src='"+data[index].user_face_url+"' alt=''/> " +
                                 "<div class='comments_item_content'> " +
                                 "<a class='comment_author' href='javascript:void(0);'>"+data[index].user_account+":</a>" +
                                 "<p class='comment_content'>"+data[index].comment+"</p>" +

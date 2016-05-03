@@ -1,9 +1,6 @@
 package com.springapp.mvc.Service;
 
-import com.springapp.mvc.Model.Apply;
-import com.springapp.mvc.Model.ApplyShort;
-import com.springapp.mvc.Model.Budget;
-import com.springapp.mvc.Model.BudgetBean;
+import com.springapp.mvc.Model.*;
 
 import java.util.List;
 
@@ -26,4 +23,5 @@ public interface ApplyService {
         public String getApplyRes(String apply_id);
         public List<ApplyShort> selectAllApplyShortByUserDepartment(String department);
         public int updateApplyState(String applyState,String apply_id);
+        public int sendApplyNotification(UserClient userClient,String apply_id);
 }

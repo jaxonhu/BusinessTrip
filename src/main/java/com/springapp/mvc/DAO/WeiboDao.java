@@ -21,4 +21,6 @@ public interface WeiboDao {
     public Weibo selectWeiboById(String weibo_id);
     public List<Comment> selectAllCommentByWeiboId(String weibo_id);
     public int insertComment(Comment comment);
+    public int updateWeiboFaceUrl(@Param(value = "user_account")String user_account,@Param(value = "user_face_url")String user_face_url);
+    public int updateCommentFaceUrl(@Param(value = "user_account")String user_account,@Param(value = "user_face_url")String user_face_url);
 }

@@ -11,13 +11,13 @@
     <link rel="stylesheet" href="<c:url value="/resources/style/left_sidebar.css"/> " type="text/css">
     <link rel="stylesheet" href="<c:url value="/resources/style/setting.css"/> " type="text/css"/>
 </head>
-<body>
+<body  onload="diff_position('${user.user_role}');">
 <div class="header ">
     <ul class="header_left ">
         <li><a href="">我的差旅</a></li>
         <a href=""> <li>差旅申请</li></a>
         <a href=""><li>报销</li></a>
-        <a href=""><li>统计</li></a>
+        <a href="" class="tong_ji"><li>统计</li></a>
         <input type="text" id="mytrip_search" placeholder="查询我的差旅记录" name="query_mytrip">
     </ul>
 
@@ -25,15 +25,15 @@
         <a href="" class="add_mytrip"></a>
         <div class="myprofile">
             <a href="">
-                <img src="<c:url value="/resources/image/profile-full-male.png"/> " class="radius3 clearFix" alt="新建差旅">
+                <img src="${user.user_face_url}" class="radius3 clearFix" alt="新建差旅">
 
-                <p class="clearFix">胡家煊</p>
+                <p class="clearFix">${user.user_account}</p>
                 <span class="header_drop"></span>
             </a>
         </div>
         <ul id="header_user_menu">
-            <li><a href="">个人主页</a></li>
-            <li><a href="">通知中心</a></li>
+            <li><a href="<%=request.getContextPath()%>/profile">个人主页</a></li>
+            <li><a href="<%=request.getContextPath()%>/notification">通知中心</a></li>
             <li><a href="">退出</a></li>
         </ul>
 
@@ -44,29 +44,29 @@
     <div class="left_content">
         <div class="user_title">
             <a href="">
-            <img src="<c:url value="/resources/image/profile-full-male.png"/>" alt=""/>
-             vensli
+            <img src="${user.user_face_url}" alt=""/>
+            ${user.user_account}
              </a>
         </div>
         <ul class="setting_menu ">
-            <li class="setting_active"><a href="">用户资料</a></li>
-            <li><a href="">个人信息</a></li>
+            <li class="setting_active"><a href="<%=request.getContextPath()%>/setting">用户资料</a></li>
+            <li><a href="<%=request.getContextPath()%>/setting/profile">个人信息</a></li>
         </ul>
     </div>
     <div class="right_content">
         <h1 class="content_header">用户资料</h1>
         <div class="module">
-            <img src="<c:url value="/resources/image/profile-full-male.png"/>" alt=""/>
-            <span class="module_name">vensli</span>
+            <img src="${user.user_face_url}" alt=""/>
+            <span class="module_name">${user.user_account}</span>
             <a class="module1_a"  href="javascript:void(0);">浏览个人主页</a>
         </div>
         <div class="module">
             <h2 class="m_title">安全</h2>
-            <span class="label">密码</span><a href="">修改密码</a>
+            <span class="label">密码</span><a href="<%=request.getContextPath()%>/setting/password">修改密码</a>
         </div>
         <div class="module">
             <h2 class="m_title">邮箱地址</h2>
-            <span class="label">邮箱地址</span><span class="label email">370403444@qq.com</span>
+            <span class="label">邮箱地址</span><span class="label email">${user.user_email}</span>
         </div>
     </div>
 </div>
@@ -89,7 +89,12 @@
 
 
     }
+    function diff_position(position){
+        if(position == "manager"){
 
+            $(".tong_ji:eq(0)").after("<a href='<%=request.getContextPath()%>/review'><li>差旅审批</li></a>");
+        }
+    }
     function showShare(){
         var obj = $(".dp_share:eq(0)");
 

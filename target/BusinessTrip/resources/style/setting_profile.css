@@ -114,6 +114,7 @@ body{
     line-height: 50px;
     text-decoration: none;
     color: #4183C4;
+    width: 150px;
     font-size: 13px;
 }
 .module p{
@@ -162,4 +163,7 @@ body{
     margin: 20px 0px 10px 20px;
     width: 100px;
     font-size: 13px;
+}
+#image_face{
+
 }
